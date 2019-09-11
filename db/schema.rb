@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_014247) do
+ActiveRecord::Schema.define(version: 2019_09_11_014727) do
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(version: 2019_09_11_014247) do
     t.string "isbn"
     t.string "level"
     t.integer "pages"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.decimal "stars", precision: 2, scale: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
