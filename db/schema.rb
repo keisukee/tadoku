@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_10_020121) do
+ActiveRecord::Schema.define(version: 2019_09_12_024025) do
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,6 +22,49 @@ ActiveRecord::Schema.define(version: 2019_09_10_020121) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.integer "length"
+    t.string "genre"
+    t.string "isbn"
+    t.string "level"
+    t.integer "pages"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "read_books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.integer "length"
+    t.string "genre"
+    t.string "isbn"
+    t.string "level"
+    t.integer "pages"
+    t.string "readable_type"
+    t.bigint "readable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["readable_type", "readable_id"], name: "index_read_books_on_readable_type_and_readable_id"
+  end
+
+  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.decimal "stars", precision: 2, scale: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "book_id"
+    t.bigint "user_id"
+    t.index ["book_id"], name: "index_reviews_on_book_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -41,9 +84,14 @@ ActiveRecord::Schema.define(version: 2019_09_10_020121) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "words"
+    t.string "title"
+    t.string "name"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "reviews", "books"
+  add_foreign_key "reviews", "users"
 end

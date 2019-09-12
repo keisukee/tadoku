@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  length: 1
+  genre: MyString
+  isbn: MyString
+  level: MyString
+  pages: 1
+
+two:
+  title: MyString
+  length: 1
+  genre: MyString
+  isbn: MyString
+  level: MyString
+  pages: 1
