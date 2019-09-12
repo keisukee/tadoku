@@ -1,4 +1,4 @@
 class Book < ApplicationRecord
-  belongs_to :readable, polymorphic: true
-  has_mamy :reviews
+  has_many :reviews
+  has_many :users, through: :reviews
 end
