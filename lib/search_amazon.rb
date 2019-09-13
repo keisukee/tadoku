@@ -12,7 +12,7 @@ module SearchAmazon
     options[:country]           = 'jp'                         # 国
   end
 
-  def search_books(keyword) # keywordは本の名前, isbn, 著者名など
+  def self.search_books(keyword) # keywordは本の名前, isbn, 著者名など
   # ページング
   res = Amazon::Ecs.item_search(keyword, item_page: 1) # 1pageあたり10個
 
