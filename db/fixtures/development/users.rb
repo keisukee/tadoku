@@ -11,3 +11,10 @@ User.seed do |s|
   s.name  = "Emily"
   s.password = "password"
 end
+
+User.seed do |s|
+  s.id    = 3
+  s.email = "alex@example.com"
+  s.name  = "Alex"
+  s.password = "password"
+end
