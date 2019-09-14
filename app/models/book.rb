@@ -7,4 +7,8 @@ class Book < ApplicationRecord
   def self.find_books(keyword)
     SearchAmazon.search_books(keyword)
   end
+
+  def self.collect_isbns(keyword)
+    SearchAmazon.isbn_list(keyword)
+  end
 end

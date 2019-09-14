@@ -24,7 +24,8 @@ class BooksController < ApplicationController
   end
 
   def search
-    Book.find_books("ruby")
+    @keyword = params[:search]
+    @isbns = Book.collect_isbns(@keyword)
   end
 
   private

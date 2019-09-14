@@ -1,2 +1,23 @@
 h1 Books#search
 p Find me in app/views/books/search.html.slim
+
+= form_with url: books_search_path, method: :get, local: true do |form|
+  li
+    p 検索
+    = form.text_field :search, placeholder: '入力してください'
+  li
+    p 検索
+    = form.submit value: "Submit"
+
+- if @isbns
+  - @isbns.each do |isbn|
+    ul
+      li
+        = link_to book_title(isbn), book_url(isbn)
+      li = book_author(isbn)
+      li
+        = image_tag book_image(isbn)
+      li = book_image_height(isbn)
+      li = book_image_width(isbn)
+      li = book_author(isbn)
+
