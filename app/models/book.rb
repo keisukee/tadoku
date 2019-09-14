@@ -11,11 +11,21 @@ class Book < ApplicationRecord
   validates :url, presence: true, uniqueness: true
   validates :image_url, presence: true
 
+  AVERAGE_WORDS_PER_PAGE = 250
+
+  before_save do
+    self.length = estimate_book_length
+  end
+
   def self.find_books(keyword)
     SearchAmazon.search_books(keyword)
   end
 
   def self.collect_isbns(keyword)
     SearchAmazon.isbn_list(keyword)
+  end
+
+  def estimate_book_length
+    pages * AVERAGE_WORDS_PER_PAGE
   end
 end
