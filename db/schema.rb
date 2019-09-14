@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_024025) do
+ActiveRecord::Schema.define(version: 2019_09_14_111822) do
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 2019_09_12_024025) do
     t.integer "pages"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "author_id"
+    t.index ["author_id"], name: "index_books_on_author_id"
   end
 
   create_table "read_books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -92,6 +94,7 @@ ActiveRecord::Schema.define(version: 2019_09_12_024025) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "books", "authors"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "users"
 end
