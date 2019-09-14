@@ -67,6 +67,9 @@ gem 'rails-i18n'
 # env
 gem 'dotenv'
 
+# seed
+gem 'seed-fu'
+
 # amazon product advertising api
 gem 'amazon-ecs'
 
