@@ -4,9 +4,9 @@ require 'nokogiri'
 module SearchAmazon
   # 初期設定
   Amazon::Ecs.configure do |options|
-    options[:AWS_access_key_id] = 'AKIAIJGRPRBNABXLEAVQ'        # 必須
-    options[:AWS_secret_key]    = 'eQUS8zuQss19usekzzF63Vf/DnQqsrAk3Zo6tKEA' # 必須
-    options[:associate_tag]     = 'affiliate3203-22'            # 必須
+    options[:AWS_access_key_id] = ENV['AWS_ACCESS_KEY_ID']        # 必須
+    options[:AWS_secret_key]    = ENV['AWS_SECRET_KEY'] # 必須
+    options[:associate_tag]     = ENV['ASSOCIATE_TAG']            # 必須
     options[:search_index]      = 'Books'                      # 商品種別
     options[:response_group]    = 'Medium'                     # レスポンスに含まれる情報量(ふつう
     options[:country]           = 'jp'                         # 国
