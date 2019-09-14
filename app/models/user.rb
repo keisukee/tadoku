@@ -7,4 +7,7 @@ class User < ApplicationRecord
   has_many :read_books, as: :readable, dependent: :destroy
   has_many :reviews
   has_many :books, through: :reviews
+
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: true
 end
