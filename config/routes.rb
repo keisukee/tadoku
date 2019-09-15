@@ -12,4 +12,5 @@ Rails.application.routes.draw do
 
   get 'books/search', to: 'books#search'
   resources :books
+  resources :users, only: [:show, :edit, :index, :update, :destroy]
 end

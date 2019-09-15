@@ -10,4 +10,16 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
+
+  before_save do
+    self.words = self.count_words
+  end
+
+  def count_words
+    count = 0
+    self.read_books.each do |book|
+      count += book.length
+    end
+    count
+  end
 end
