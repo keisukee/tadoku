@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_15_113535) do
+ActiveRecord::Schema.define(version: 2019_09_15_014522) do
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(version: 2019_09_15_113535) do
     t.string "image_url"
     t.integer "image_height"
     t.integer "image_width"
-    t.datetime "read_at"
     t.index ["readable_type", "readable_id"], name: "index_read_books_on_readable_type_and_readable_id"
   end
 
