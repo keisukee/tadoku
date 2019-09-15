@@ -1,0 +1,19 @@
+h1 users/show
+
+ul
+  li = @user.words
+  li = @user.title
+  li = @user.name
+  li = @user.image
+
+h2 読んだ本
+- @user.read_books.each do |book|
+  ul
+    li = book.title
+    li = book.length
+    li = book.level
+    li = book.pages
+
+
+
+
