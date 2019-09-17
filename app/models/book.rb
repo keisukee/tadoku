@@ -6,9 +6,10 @@ class Book < ApplicationRecord
   belongs_to :author
 
   validates :title, presence: true
-  validates :isbn, presence: true, uniqueness: true
+  validates :isbn, uniqueness: true
+  validates :asin, uniqueness: true
   validates :pages, presence: true
-  validates :url, presence: true, uniqueness: true
+  validates :url, presence: true
   validates :image_url, presence: true
 
   AVERAGE_WORDS_PER_PAGE = 250
