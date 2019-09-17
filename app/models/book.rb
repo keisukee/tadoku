@@ -25,6 +25,10 @@ class Book < ApplicationRecord
     SearchAmazon.isbn_list(keyword)
   end
 
+  def self.collect_books(keyword)
+    SearchAmazon.collect_books(keyword)
+  end
+
   def estimate_book_length
     pages * AVERAGE_WORDS_PER_PAGE
   end

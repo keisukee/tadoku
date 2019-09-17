@@ -9,15 +9,14 @@ p Find me in app/views/books/search.html.slim
     p 検索
     = form.submit value: "Submit"
 
-- if @isbns
-  - @isbns.each do |isbn|
+- if @books_data.length > 0
+  - @books_data.each do |book|
     ul
       li
-        = link_to book_title(isbn), book_url(isbn)
-      li = book_author(isbn)
+        = link_to book[:title], book[:url], target: "_blank"
+      li = book[:author]
       li
-        = image_tag book_image(isbn)
-      li = book_image_height(isbn)
-      li = book_image_width(isbn)
-      li = book_author(isbn)
+        = image_tag book[:image_url]
+      li = book[:image_height]
+      li = book[:image_width]
 

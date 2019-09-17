@@ -1,19 +1,22 @@
 require 'amazon/ecs'
 require 'nokogiri'
+require 'dotenv'
 
 module SearchAmazon
   # 初期設定
+  Dotenv.load!
   Amazon::Ecs.configure do |options|
-    options[:AWS_access_key_id] = ENV['AWS_ACCESS_KEY_ID']        # 必須
+    options[:AWS_access_key_id] = ENV['AWS_ACCESS_KEY_ID'] # 必須
     options[:AWS_secret_key]    = ENV['AWS_SECRET_KEY'] # 必須
-    options[:associate_tag]     = ENV['ASSOCIATE_TAG']            # 必須
+    options[:associate_tag]     = ENV['ASSOCIATE_TAG'] # 必須
     options[:search_index]      = 'Books'                      # 商品種別
     options[:response_group]    = 'Medium'                     # レスポンスに含まれる情報量(ふつう
     options[:country]           = 'jp'                         # 国
   end
 
   class << self
-    def search_books(keyword) # keywordは本の名前, isbn, 著者名など
+    # keywordは本の名前, isbn, 著者名など
+    def search_books(keyword)
       # ページング
       res = Amazon::Ecs.item_search(keyword, item_page: 1) # 1pageあたり10個
 
@@ -25,9 +28,9 @@ module SearchAmazon
         puts ""
         puts "画像URLは " + doc.xpath("//MediumImage//URL").text
         puts ""
-        puts "画像URLの高さは " + doc.xpath("//MediumImage//Height").text
+        puts "画像URLの高さは " + doc.xpath("//Item/MediumImage//Height").text
         puts ""
-        puts "画像URLの長さは " + doc.xpath("//MediumImage//Width").text
+        puts "画像URLの長さは " + doc.xpath("//Item/MediumImage//Width").text
         puts ""
         puts "本の著者は " + doc.xpath("//Author").text
         puts ""
@@ -39,6 +42,27 @@ module SearchAmazon
         puts ""
         puts "タイトルは " + doc.xpath("//Title").text
       end
+    end
+
+    # hashを返す
+    def collect_books(keyword)
+      books = []
+      res = Amazon::Ecs.item_search(keyword, item_page: 1) # 1pageあたり10個
+
+      res.items.each do |item|
+        books_info = {}
+        doc = Nokogiri::XML(item.to_s)
+        books_info[:url] = doc.xpath("//DetailPageURL").text
+        books_info[:image_url] = doc.xpath("//MediumImage//URL").text
+        books_info[:image_height] = doc.xpath("//Item/MediumImage//Height").text
+        books_info[:image_width] = doc.xpath("//Item/MediumImage//Width").text
+        books_info[:author] = doc.xpath("//Author").text
+        books_info[:isbn] = doc.xpath("//ISBN").text
+        books_info[:pages] = doc.xpath("//NumberOfPages").text
+        books_info[:title] = doc.xpath("//Title").text
+        books << books_info
+      end
+      books
     end
 
     def isbn_list(keyword)
@@ -72,7 +96,7 @@ module SearchAmazon
       item = res.items.first
 
       doc = Nokogiri::XML(item.to_s)
-      doc.xpath("//MediumImage//Height").text
+      doc.xpath("//Item/MediumImage//Height").text
     end
 
     def search_book_image_width(isbn)
@@ -80,7 +104,7 @@ module SearchAmazon
       item = res.items.first
 
       doc = Nokogiri::XML(item.to_s)
-      doc.xpath("//MediumImage//Width").text
+      doc.xpath("//Item/MediumImage//Width").text
     end
 
     def search_book_author(isbn)
