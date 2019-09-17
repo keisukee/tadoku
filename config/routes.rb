@@ -12,5 +12,7 @@ Rails.application.routes.draw do
 
   get 'books/search', to: 'books#search'
   resources :books
-  resources :users, only: [:show, :edit, :index, :update, :destroy]
+  resources :users, only: [:show, :edit, :index, :update, :destroy] do
+    resources :monthlies, only: [:show, :index], param: :year, controller: 'users/monthlies'
+  end
 end

@@ -75,6 +75,7 @@ gem 'amazon-ecs'
 
 # describing graph
 gem 'chart-js-rails'
+gem 'gon'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
