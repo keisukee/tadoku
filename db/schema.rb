@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_17_155123) do
+ActiveRecord::Schema.define(version: 2019_09_17_160619) do
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 2019_09_17_155123) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "author_id"
-    t.string "url"
-    t.string "image_url"
+    t.text "url"
+    t.text "image_url"
     t.integer "image_height"
     t.integer "image_width"
     t.string "asin"
@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 2019_09_17_155123) do
     t.bigint "readable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "url"
-    t.string "image_url"
+    t.text "url"
+    t.text "image_url"
     t.integer "image_height"
     t.integer "image_width"
     t.string "asin"
