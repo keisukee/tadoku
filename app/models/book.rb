@@ -6,9 +6,10 @@ class Book < ApplicationRecord
   belongs_to :author
 
   validates :title, presence: true
-  validates :isbn, presence: true, uniqueness: true
+  validates :isbn, uniqueness: true
+  validates :asin, uniqueness: true
   validates :pages, presence: true
-  validates :url, presence: true, uniqueness: true
+  validates :url, presence: true
   validates :image_url, presence: true
 
   AVERAGE_WORDS_PER_PAGE = 250
@@ -23,6 +24,10 @@ class Book < ApplicationRecord
 
   def self.collect_isbns(keyword)
     SearchAmazon.isbn_list(keyword)
+  end
+
+  def self.collect_books(keyword)
+    SearchAmazon.collect_books(keyword)
   end
 
   def estimate_book_length

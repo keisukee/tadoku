@@ -2,7 +2,8 @@ class ReadBook < ApplicationRecord
   belongs_to :readable, polymorphic: true
 
   validates :title, presence: true
-  validates :isbn, presence: true
+  validates :isbn, uniqueness: true
+  validates :asin, uniqueness: true
   validates :pages, presence: true
   validates :url, presence: true
   validates :image_url, presence: true
