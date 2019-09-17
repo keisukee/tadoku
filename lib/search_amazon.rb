@@ -36,6 +36,8 @@ module SearchAmazon
         puts ""
         puts "ISBNは " + doc.xpath("//ISBN").text
         puts ""
+        puts "ASINは " + doc.xpath("//ASIN").text
+        puts ""
         puts "ページ数は " + doc.xpath("//NumberOfPages").text
         puts ""
         puts "出版社は " + doc.xpath("//Publisher").text
@@ -58,6 +60,7 @@ module SearchAmazon
         books_info[:image_width] = doc.xpath("//Item/MediumImage//Width").text
         books_info[:author] = doc.xpath("//Author").text
         books_info[:isbn] = doc.xpath("//ISBN").text
+        books_info[:asin] = doc.xpath("//ASIN").text
         books_info[:pages] = doc.xpath("//NumberOfPages").text
         books_info[:title] = doc.xpath("//Title").text
         books << books_info
