@@ -24,10 +24,10 @@ class User < ApplicationRecord
     count
   end
 
-  def calc_words_per_month
+  # 毎月の語数
+  def calc_words_per_month(year)
     words_per_month = []
-    year = 2019
-    t = Time.zone.now.beginning_of_year
+    t = Time.utc(year, 1, 1, 0, 0, 0).in_time_zone # ex) Tue, 01 Jan 2019 00:00:00 UTC +00:00
     (0..11).each do |i|
       bom = t + i.month # bom: beginning of month
       eom = (t + i.month).end_of_month # eof: end of month
@@ -41,6 +41,7 @@ class User < ApplicationRecord
     words_per_month
   end
 
+  # 累計グラフの縦軸
   def calc_cumulative_words
     # グラフには20本のvarを出す
     number_of_books = read_books.count

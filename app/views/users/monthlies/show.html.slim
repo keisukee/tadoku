@@ -1,21 +1,22 @@
-h1 users/show
+h1 Users::Monthlies#show
+p Find me in app/views/users/monthlies/show.html.slim
 
-ul
-  li = link_to "年間データ", user_monthly_path(user_id: @user.id, year: Date.today.year)
+p = link_to "#{@previous_year}年のデータ", user_monthly_path(user_id: @user, year: @previous_year)
+p = link_to "#{@next_year}年のデータ", user_monthly_path(user_id: @user, year: @next_year)
 
-
+h2 グラフ
 .reach-graph
-  h2.reach-title 累計多読語数
+  h2.reach-title リーチ数
   canvas#myChart height="25" width="43"
   javascript:
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: gon.cumulated_book_number,
+            labels: gon.months,
             datasets: [{
-                label: '累計多読語数',
-                data: gon.calc_cumulative_words,
+                label: '【年間】 月別多読語数',
+                data: gon.graph_data_array,
                 backgroundColor: [
                     'rgba(75, 192, 192, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -45,22 +46,3 @@ ul
             }
         }
     });
-
-
-ul
-  li = @user.words
-  li = @user.title
-  li = @user.name
-  li = @user.image
-
-h2 読んだ本
-- @user.read_books.each do |book|
-  ul
-    li = book.title
-    li = book.length
-    li = book.level
-    li = book.pages
-
-
-
-
