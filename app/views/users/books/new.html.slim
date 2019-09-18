@@ -26,6 +26,9 @@ h2 本棚から探す
       li = book[:author]
       li = book[:isbn]
       li = book[:asin]
+      li
+        | 値段
+        = book[:price]
       = form_with model: @book, url: user_books_path(@user) do |form|
         = form.hidden_field :author_name, :value => book[:author]
         = form.hidden_field :title, :value => book[:title]
@@ -35,6 +38,7 @@ h2 本棚から探す
         = form.hidden_field :image_url, :value => book[:image_url]
         = form.hidden_field :image_height, :value => book[:image_height]
         = form.hidden_field :image_width, :value => book[:image_width]
+        = form.hidden_field :price, :value => book[:price]
         p 本を読んだ時刻
         = form.hidden_field :pages, :value => book[:pages]
 

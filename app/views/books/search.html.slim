@@ -25,6 +25,9 @@ p Find me in app/views/books/search.html.slim
       li = book[:author]
       li = book[:isbn]
       li = book[:asin]
+      li
+        | 値段
+        = book[:price]
       = form_with scope: :book, url: books_path do |form|
         = form.hidden_field :author_name, :value => book[:author]
         = form.hidden_field :title, :value => book[:title]
@@ -35,6 +38,7 @@ p Find me in app/views/books/search.html.slim
         = form.hidden_field :image_height, :value => book[:image_height]
         = form.hidden_field :image_width, :value => book[:image_width]
         = form.hidden_field :pages, :value => book[:pages]
+        = form.hidden_field :price, :value => book[:price]
         p 検索
         = form.submit value: "登録"
 
