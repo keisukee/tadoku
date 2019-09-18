@@ -40,6 +40,8 @@ module SearchAmazon
         puts ""
         puts "ページ数は " + doc.xpath("//NumberOfPages").text
         puts ""
+        puts "値段は " + doc.xpath("//ListPrice//FormattedPrice").text
+        puts ""
         puts "出版社は " + doc.xpath("//Publisher").text
         puts ""
         puts "タイトルは " + doc.xpath("//Title").text
@@ -63,6 +65,8 @@ module SearchAmazon
         books_info[:asin] = doc.xpath("//ASIN").text
         books_info[:pages] = doc.xpath("//NumberOfPages").text
         books_info[:title] = doc.xpath("//Title").text
+        books_info[:price] = doc.xpath("//ListPrice//FormattedPrice").text
+
         books << books_info
       end
       books
