@@ -3,6 +3,8 @@ class Book < ApplicationRecord
 
   has_many :reviews
   has_many :users, through: :reviews
+  has_many :reviewd_users, through: :reviews, source: :user
+
   belongs_to :author
 
   has_many :reading_histories

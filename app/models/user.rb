@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable, :trackable
 
   has_many :reviews
-  has_many :books, through: :reviews
+  has_many :reviewd_books, through: :reviews, source: :book
 
   has_many :reading_histories
   has_many :books, through: :reading_histories
