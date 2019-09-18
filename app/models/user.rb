@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :books, through: :reviews
 
+  has_many :reading_histories
+  has_many :books, through: :reading_histories
+
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
 
