@@ -1,0 +1,19 @@
+h1 Users::Books#index
+p Find me in app/views/users/books/index.html.slim
+p = link_to "読んだ本を登録する", new_user_book_path(@user)
+
+- @books.each do |book|
+  ul
+    li = image_tag book.image_url, width: book.image_width, height: book.image_height
+    li = link_to book.title, book.url, target: "_blank"
+    li = book.isbn
+    li = book.asin
+    li
+      = book.pages
+      | pages
+    li
+      = book.length
+      | words
+
+    li = book.author.name
+    li = book.reading_histories.find_by(user_id: @user.id).read_at

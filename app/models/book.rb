@@ -5,6 +5,9 @@ class Book < ApplicationRecord
   has_many :users, through: :reviews
   belongs_to :author
 
+  has_many :reading_histories
+  has_many :users, through: :reading_histories
+
   validates :title, presence: true
   validates :isbn, uniqueness: true
   validates :asin, uniqueness: true
