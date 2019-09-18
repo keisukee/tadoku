@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_18_013642) do
+ActiveRecord::Schema.define(version: 2019_09_18_020209) do
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 2019_09_18_013642) do
     t.string "asin"
     t.datetime "read_at"
     t.index ["readable_type", "readable_id"], name: "index_read_books_on_readable_type_and_readable_id"
+  end
+
+  create_table "reading_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "book_id"
+    t.datetime "read_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_reading_histories_on_book_id"
+    t.index ["user_id"], name: "index_reading_histories_on_user_id"
   end
 
   create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
