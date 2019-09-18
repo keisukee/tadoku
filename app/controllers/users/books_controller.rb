@@ -2,7 +2,7 @@ class Users::BooksController < ApplicationController
   before_action :set_user
 
   def index
-    @books = @user.read_books
+    @books = @user.books
   end
 
   def new

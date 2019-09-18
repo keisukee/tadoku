@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_18_020209) do
+ActiveRecord::Schema.define(version: 2019_09_18_021905) do
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -46,26 +46,6 @@ ActiveRecord::Schema.define(version: 2019_09_18_020209) do
     t.integer "image_width"
     t.string "asin"
     t.index ["author_id"], name: "index_books_on_author_id"
-  end
-
-  create_table "read_books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title"
-    t.integer "length"
-    t.string "genre"
-    t.string "isbn"
-    t.string "level"
-    t.integer "pages"
-    t.string "readable_type"
-    t.bigint "readable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "url"
-    t.text "image_url"
-    t.integer "image_height"
-    t.integer "image_width"
-    t.string "asin"
-    t.datetime "read_at"
-    t.index ["readable_type", "readable_id"], name: "index_read_books_on_readable_type_and_readable_id"
   end
 
   create_table "reading_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

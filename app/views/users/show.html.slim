@@ -54,7 +54,7 @@ ul
   li = @user.image
 
 h2 読んだ本
-- @user.read_books.each do |book|
+- @user.books.each do |book|
   ul
     li = book.title
     li = book.length
