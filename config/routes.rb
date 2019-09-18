@@ -18,8 +18,15 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get 'books/search', to: 'books#search'
-  resources :books
+  resources :books do
+    member do
+      get :register
+    end
+
+    collection do
+      get :search
+    end
+  end
   resources :users, only: [:show, :edit, :index, :update, :destroy] do
     resources :books, only: [:index, :new, :create, :edit, :update, :destroy], controller: 'users/books'
     resources :monthlies, only: [:show, :index], param: :year, controller: 'users/monthlies'

@@ -1,22 +1,23 @@
 class BooksController < ApplicationController
   before_action :book_params, only: [:create, :update]
   before_action :author_params, only: [:create, :update]
+  before_action :authenticate_user!, only: [:register]
+  before_action :set_book, only: [:show, :register, :edit, :destroy]
+
+  def new
+  end
 
   def index
     @books = Book.all
   end
 
   def show
-    @book = Bool.find(params[:id])
   end
 
   def destroy
   end
 
   def edit
-  end
-
-  def new
   end
 
   def create
@@ -38,6 +39,9 @@ class BooksController < ApplicationController
     @keyword = params[:search]
     # @isbns = Book.collect_isbns(@keyword)
     @books_data = Book.collect_books(@keyword) # 配列の中にハッシュが入っている. ex) [{:url=>"https://www.amazon.co.jp", :image_url=>"https://images-fe.ssl-images-amazon.com/images.jpg", :image_height=>"160160", :image_width=>"107107", :author=>"John Doe", :isbn=>"1975328191", :pages=>"224", :title=>"hogehoge"}]
+  end
+
+  def register
   end
 
   private
