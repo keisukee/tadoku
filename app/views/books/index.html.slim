@@ -1,3 +1,17 @@
 h1 Books#index
 p Find me in app/views/books/index.html.slim
 
+- @books.each do |book|
+  ul
+    li = image_tag book.image_url, width: book.image_width, height: book.image_height
+    li = link_to book.title, book.url, target: "_blank"
+    li = book.isbn
+    li = book.asin
+    li
+      = book.pages
+      | pages
+    li
+      = book.length
+      | words
+    li = book.author.name
+
