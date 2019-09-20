@@ -1,4 +1,14 @@
-header this is header
-ul
-  li = link_to 'Home', root_path
-  li = link_to 'login', user_session_path
+header
+  ul
+    li = link_to 'Home', root_path
+    li = link_to '新規登録（無料）', new_user_registration_path
+    li = link_to 'ログイン', user_session_path
+
+  h1 多読の達人
+  p あなたの多読量を記録・管理
+  .form
+    = form_with url: search_books_path, method: :get, local: true do |form|
+      li
+        p 検索
+        = form.text_field :search, placeholder: '入力してください'
+        = form.submit value: 'Submit'
