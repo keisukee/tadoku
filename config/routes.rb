@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :users do
+    get 'reviews/index'
+  end
   get 'authors/show'
   get 'authors/index'
   get 'author/show'
@@ -29,6 +32,7 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:show, :edit, :index, :update, :destroy] do
     resources :books, only: [:index, :update], controller: 'users/books'
+    resources :reviews, only: [:index], controller: 'users/reviews'
     resources :monthlies, only: [:show, :index], param: :year, controller: 'users/monthlies'
   end
 
