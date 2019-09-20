@@ -1,18 +1,18 @@
 class Users::BooksController < ApplicationController
-  before_action :set_user
-  before_action :book_params, only: [:create, :update]
-  before_action :author_params, only: [:create, :update]
-  before_action :reading_history_params, only: [:create, :update]
+  before_action :set_user, only: [:index, :show]
+  before_action :book_params, only: [:new, :create, :update]
+  before_action :author_params, only: [:new, :create, :update]
+  before_action :reading_history_params, only: [:new, :create, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit]
 
   def index
     @books = @user.books
   end
 
   def new
-    @book = Book.new
-    @keyword = params[:search]
-    # @isbns = Book.collect_isbns(@keyword)
-    @books_data = Book.collect_books(@keyword) # 配列の中にハッシュが入っている. ex) [{:url=>"https://www.amazon.co.jp", :image_url=>"https://images-fe.ssl-images-amazon.com/images.jpg", :image_height=>"160160", :image_width=>"107107", :author=>"John Doe", :isbn=>"1975328191", :pages=>"224", :title=>"hogehoge"}]
+    @book_data = book_params
+    @author_data = author_params
+    @reading_history_data = reading_history_params
   end
 
   def create
@@ -46,6 +46,9 @@ class Users::BooksController < ApplicationController
   end
 
   def destroy
+  end
+
+  def register
   end
 
   private

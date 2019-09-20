@@ -1,7 +1,7 @@
 h1 本を本棚に登録（自動的に本棚にも追加されます）
 p Find me in app/views/books/search.html.slim
 
-= form_with url: books_search_path, method: :get, local: true do |form|
+= form_with url: search_books_path, method: :get, local: true do |form|
   li
     p 検索
     = form.text_field :search, placeholder: '入力してください'
@@ -40,6 +40,21 @@ p Find me in app/views/books/search.html.slim
         = form.hidden_field :pages, :value => book[:pages]
         = form.hidden_field :price, :value => book[:price]
         p 検索
-        = form.submit value: "登録"
+        = form.submit value: "本棚に登録"
+      - if current_user
+        = form_with scope: :book, method: :get, local: true, url: new_users_book_path do |form|
+          = form.hidden_field :author_name, :value => book[:author]
+          = form.hidden_field :title, :value => book[:title]
+          = form.hidden_field :url, :value => book[:url]
+          = form.hidden_field :isbn, :value => book[:isbn]
+          = form.hidden_field :asin, :value => book[:asin]
+          = form.hidden_field :image_url, :value => book[:image_url]
+          = form.hidden_field :image_height, :value => book[:image_height]
+          = form.hidden_field :image_width, :value => book[:image_width]
+          = form.hidden_field :pages, :value => book[:pages]
+          = form.hidden_field :price, :value => book[:price]
+          p 検索
+          = form.submit value: "読んだ本に登録"
+
 
 
