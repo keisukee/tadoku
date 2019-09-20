@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'authors/show'
+  get 'authors/index'
+  get 'author/show'
+  get 'author/index'
   namespace :users do
     get 'books/index'
     get 'books/new'
@@ -31,5 +35,7 @@ Rails.application.routes.draw do
   namespace :users do
     resources :books, only: [:new, :create, :edit, :destroy]
   end
+
+  resources :authors, only: [:show, :index]
 
 end
