@@ -1,10 +1,8 @@
 require 'amazon/ecs'
 require 'nokogiri'
-require 'dotenv'
 
 module SearchAmazon
   # 初期設定
-  Dotenv.load!
   Amazon::Ecs.configure do |options|
     options[:AWS_access_key_id] = ENV['AWS_ACCESS_KEY_ID'] # 必須
     options[:AWS_secret_key]    = ENV['AWS_SECRET_KEY'] # 必須
