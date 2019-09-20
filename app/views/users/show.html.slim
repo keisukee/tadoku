@@ -1,0 +1,76 @@
+h1 users/show
+
+ul
+  li = link_to "年間データ", user_monthly_path(user_id: @user.id, year: Date.today.year)
+  li = link_to "読んだ本 #{@user.books.count}冊", user_books_path(user_id: @user.id)
+  li = link_to "レビュー一覧 #{@reviews.count}件", user_reviews_path(user_id: @user.id)
+
+
+.reach-graph
+  h2.reach-title 累計多読語数
+  canvas#myChart height="25" width="43"
+  javascript:
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: gon.cumulated_book_number,
+            datasets: [{
+                label: '累計多読語数',
+                data: gon.calc_cumulative_words,
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+
+ul
+  li = @user.words
+  li = @user.title
+  li = @user.name
+  li = @user.image
+
+h2 読んだ本
+p = link_to "詳しく見る", user_books_path(user_id: @user.id)
+- @books.each do |book|
+  ul
+    li = book.title
+    li = book.length
+    li = book.level
+    li = book.pages
+
+h2 レビュー
+p = link_to "詳しく見る", user_reviews_path(user_id: @user.id)
+- @reviews.limit(5).each do |review|
+  ul
+    li = review.book.title
+    li = review.review
+
+
+
+

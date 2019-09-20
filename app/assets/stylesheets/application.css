@@ -12,4 +12,23 @@
  *
  *= require_tree .
  *= require_self
+ *= stub "active_admin"
  */
+li {
+  list-style: none;
+}
+
+a {
+  color: #219315;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #64BC4B;
+  text-decoration: underline;
+}
+
+*, *::before, *::after {
+  padding: 0;
+  margin: 0;
+}

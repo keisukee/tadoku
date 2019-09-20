@@ -16,6 +16,7 @@ module AppName
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    config.sass.preferred_syntax = :sass
     config.generators do |g|
       g.stylesheets :sass
       g.javascripts false
@@ -24,5 +25,7 @@ module AppName
       g.test_framework :rspec, view_specs: false, helper_specs: false, fixture: true
       # g.fixture_replacement :factory_girl, dir: "spec/support/factories"
     end
+
+    config.autoload_paths += %W(#{config.root}/lib) # add this line
   end
 end

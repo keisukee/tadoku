@@ -1,0 +1,11 @@
+h1 Authors#index
+p Find me in app/views/authors/index.html.slim
+
+- @authors.each do |author|
+  h2
+    = link_to author.name, author_path(author)
+    span
+      = author.books.count
+      | 冊
+
+
