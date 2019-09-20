@@ -64,9 +64,6 @@ gem 'kaminari'
 # Decorator
 gem 'rails-i18n'
 
-# env
-gem 'dotenv'
-
 # seed
 gem 'seed-fu'
 
@@ -94,6 +91,9 @@ group :development, :test do
 
   # データ作成補助
   gem 'faker'
+
+  # env herokuデプロイなので、productionでは使わない（エラーが出るので）
+  gem 'dotenv'
 end
 
 group :development do
