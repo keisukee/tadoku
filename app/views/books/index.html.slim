@@ -3,8 +3,10 @@ p Find me in app/views/books/index.html.slim
 
 - @books.each do |book|
   ul
-    li = image_tag book.image_url, width: book.image_width, height: book.image_height
-    li = link_to book.title, book.url, target: "_blank"
+    li
+      = link_to book_path(book) do
+        = image_tag book.image_url, width: book.image_width, height: book.image_height
+    li = link_to book.title, book_path(book)
     li = book.isbn
     li = book.asin
     li
@@ -14,4 +16,7 @@ p Find me in app/views/books/index.html.slim
       = book.length
       | words
     li = book.author.name
+    li
+      = book.price
+      | 円
 

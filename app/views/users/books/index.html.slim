@@ -1,6 +1,5 @@
 h1 Users::Books#index
 p Find me in app/views/users/books/index.html.slim
-p = link_to "読んだ本を登録する", new_user_book_path(@user)
 
 - @books.each do |book|
   ul
@@ -14,6 +13,12 @@ p = link_to "読んだ本を登録する", new_user_book_path(@user)
     li
       = book.length
       | words
-
     li = book.author.name
     li = book.reading_histories.find_by(user_id: @user.id).read_at
+
+- @reading_histories.each do |reading_history|
+  ul
+    li = reading_history.review
+    li = reading_history.level
+    li = reading_history.words
+

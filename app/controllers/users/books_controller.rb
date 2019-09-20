@@ -1,18 +1,19 @@
 class Users::BooksController < ApplicationController
-  before_action :set_user
+  before_action :set_user, only: [:index, :show]
   before_action :book_params, only: [:create, :update]
   before_action :author_params, only: [:create, :update]
   before_action :reading_history_params, only: [:create, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit]
 
   def index
     @books = @user.books
+    @reading_histories = ReadingHistory.where(user_id: @user.id).where.not(review: nil)
   end
 
   def new
+    @book_data = book_params || ""
+    @author_data = author_params || ""
     @book = Book.new
-    @keyword = params[:search]
-    # @isbns = Book.collect_isbns(@keyword)
-    @books_data = Book.collect_books(@keyword) # 配列の中にハッシュが入っている. ex) [{:url=>"https://www.amazon.co.jp", :image_url=>"https://images-fe.ssl-images-amazon.com/images.jpg", :image_height=>"160160", :image_width=>"107107", :author=>"John Doe", :isbn=>"1975328191", :pages=>"224", :title=>"hogehoge"}]
   end
 
   def create
@@ -34,9 +35,14 @@ class Users::BooksController < ApplicationController
     minute = reading_history_params["read_at(5i)"].to_i
     @read_at = DateTime.new(year, month, day, hour, minute)
 
-    ReadingHistory.create(user_id: @user.id, book_id: @book.id, read_at: @read_at)
+    ReadingHistory.create(user_id: current_user.id,
+                          book_id: @book.id,
+                          read_at: @read_at,
+                          review: reading_history_params[:review],
+                          level: reading_history_params[:level],
+                          words: reading_history_params[:words])
 
-    redirect_to user_books_path
+    redirect_to user_books_path(current_user)
   end
 
   def edit
@@ -63,7 +69,7 @@ class Users::BooksController < ApplicationController
   end
 
   def reading_history_params
-    params.require(:book).permit("read_at(1i)", "read_at(2i)", "read_at(3i)", "read_at(4i)", "read_at(5i)")
+    params.require(:book).permit("read_at(1i)", "read_at(2i)", "read_at(3i)", "read_at(4i)", "read_at(5i)", :review, :words, :level)
   end
 
 end
