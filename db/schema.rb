@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_18_232156) do
+ActiveRecord::Schema.define(version: 2019_09_20_075945) do
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2019_09_18_232156) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "review"
-    t.integer "level"
+    t.decimal "level", precision: 2, scale: 1
     t.string "genre"
     t.integer "words"
     t.index ["book_id"], name: "index_reading_histories_on_book_id"
