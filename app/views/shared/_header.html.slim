@@ -4,8 +4,12 @@ header
     li = link_to '本一覧', books_path
     li = link_to '著者一覧', authors_index_path
     li = link_to 'ランキング', root_path
-    li = link_to '新規登録（無料）', new_user_registration_path
-    li = link_to 'ログイン', user_session_path
+    - if current_user
+      li = link_to 'プロフィール', user_path(current_user)
+    - else
+      li = link_to '新規登録（無料）', new_user_registration_path
+      li = link_to 'ログイン', user_session_path
+
 
   h1 多読の達人
   p あなたの多読量を記録・管理

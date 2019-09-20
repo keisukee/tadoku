@@ -30,7 +30,7 @@ class User < ApplicationRecord
     (0..11).each do |i|
       bom = t + i.month # bom: beginning of month
       eom = (t + i.month).end_of_month # eof: end of month
-      books = self.books.where(["? < created_at and created_at < ?", bom, eom])
+      books = self.books.where(["? < read_at and read_at < ?", bom, eom])
       count = 0
       books.each do |b|
         count += b.length

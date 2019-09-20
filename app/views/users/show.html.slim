@@ -2,6 +2,7 @@ h1 users/show
 
 ul
   li = link_to "年間データ", user_monthly_path(user_id: @user.id, year: Date.today.year)
+  li = link_to "読んだ本", user_books_path(user_id: @user.id)
 
 
 .reach-graph
@@ -54,7 +55,8 @@ ul
   li = @user.image
 
 h2 読んだ本
-- @user.books.each do |book|
+p = link_to "詳しく見る", user_books_path(user_id: @user.id)
+- @books.each do |book|
   ul
     li = book.title
     li = book.length
