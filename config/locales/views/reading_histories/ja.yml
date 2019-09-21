@@ -1,0 +1,22 @@
+ja:
+  reading_histories:
+    genre:
+      adventure: "冒険"
+      sf: "SF"
+      art: "芸術"
+      biography: "伝記"
+      classics: "古典"
+      comedy: "コメディ"
+      crime_suspense: "サスペンス"
+      easy_story: "幼児向け"
+      history: "歴史"
+      heart_warming: "ほのぼの"
+      philosophy: "哲学"
+      politics: "政治"
+      rhyme: "言葉遊び"
+      sport: "スポーツ"
+      short_stories: "短編集"
+      true_story: "実話"
+      manga: "マンガ"
+      love: "恋愛"
+      othre: "その他"
