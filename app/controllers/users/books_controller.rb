@@ -7,7 +7,7 @@ class Users::BooksController < ApplicationController
 
   def index
     @books = @user.books
-    @reading_histories = ReadingHistory.where(user_id: @user.id).where.not(review: nil)
+    @reading_histories = ReadingHistory.where(user_id: @user.id)
   end
 
   def new
@@ -40,7 +40,8 @@ class Users::BooksController < ApplicationController
                           read_at: @read_at,
                           review: reading_history_params[:review],
                           level: reading_history_params[:level],
-                          words: reading_history_params[:words])
+                          words: reading_history_params[:words],
+                          genre: reading_history_params[:genre])
 
     redirect_to user_books_path(current_user)
   end
@@ -69,7 +70,7 @@ class Users::BooksController < ApplicationController
   end
 
   def reading_history_params
-    params.require(:book).permit("read_at(1i)", "read_at(2i)", "read_at(3i)", "read_at(4i)", "read_at(5i)", :review, :words, :level)
+    params.require(:book).permit("read_at(1i)", "read_at(2i)", "read_at(3i)", "read_at(4i)", "read_at(5i)", :review, :words, :level, :genre)
   end
 
 end

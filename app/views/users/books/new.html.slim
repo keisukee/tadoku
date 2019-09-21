@@ -33,6 +33,8 @@ p = link_to "他の本を登録する", search_books_path
     = form.hidden_field :image_width, :value => @book_data[:image_width]
     = form.hidden_field :pages, :value => @book_data[:pages]
     = form.hidden_field :price, :value => @book_data[:price]
+    = form.label :genre, "ジャンル"
+    = form.select :genre, ReadingHistory.genres.keys.to_a, {}
     = form.label :review, "レビュー"
     = form.text_area :review
     = form.label :words, "語数"

@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     gon.cumulated_book_number = @user.cumulated_book_number
     gon.calc_cumulative_words = @user.calc_cumulative_words
     @books = @user.books.limit(10)
-    @reviews = @user.reading_histories.where(user_id: @user.id).where.not(review: nil)
+    @reviews = @user.reading_histories.where(user_id: @user.id).where.not(review: "")
   end
 
   def update
