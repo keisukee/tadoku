@@ -74,6 +74,8 @@ GEM
     bootsnap (1.4.5)
       msgpack (~> 1.0)
     builder (3.2.3)
+    bulma-rails (0.7.5)
+      sassc (~> 2.0)
     byebug (11.0.1)
     cancancan (3.0.1)
     capybara (3.29.0)
@@ -617,6 +619,7 @@ DEPENDENCIES
   activeadmin
   amazon-ecs
   bootsnap (>= 1.1.0)
+  bulma-rails
   byebug
   cancancan
   capybara (>= 2.15)
