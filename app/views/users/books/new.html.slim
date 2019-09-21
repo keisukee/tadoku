@@ -4,44 +4,47 @@ p Find me in app/views/users/books/new.html.slim
 p = current_user.name
 p = link_to "他の本を登録する", search_books_path
 - unless @book_data.empty? || @author_data.empty?
-  ul
-    li = @author_data[:author_name]
-    li
+  .card
+    .card-image
       = link_to @book_data[:url], target: "_blank" do
         = image_tag @book_data[:image_url], width: @book_data[:image_width], height: @book_data[:image_height]
-    li = link_to @book_data[:title], @book_data[:url], target: "_blank"
-    li = @book_data[:isbn]
-    li = @book_data[:asin]
-    li
-      = @book_data[:pages]
-      | pages
-    li
-      = @book_data[:pages].to_i * Book::AVERAGE_WORDS_PER_PAGE
-      | words
-    li = @author_data[:author_name]
-    li
-      = @book_data[:price]
-      | 円
-  = form_with model: @book, method: :post, local: true, url: users_books_path do |form|
-    = form.hidden_field :title, :value => @book_data[:title]
-    = form.hidden_field :url, :value => @book_data[:url]
-    = form.hidden_field :author_name, :value => @author_data[:author_name]
-    = form.hidden_field :isbn, :value => @book_data[:isbn]
-    = form.hidden_field :asin, :value => @book_data[:asin]
-    = form.hidden_field :image_url, :value => @book_data[:image_url]
-    = form.hidden_field :image_height, :value => @book_data[:image_height]
-    = form.hidden_field :image_width, :value => @book_data[:image_width]
-    = form.hidden_field :pages, :value => @book_data[:pages]
-    = form.hidden_field :price, :value => @book_data[:price]
-    = form.label :genre, "ジャンル"
-    = form.select :genre, ReadingHistory.genres.keys.to_a, {}
-    = form.label :review, "レビュー"
-    = form.text_area :review
-    = form.label :words, "語数"
-    = form.number_field :words, :value => @book_data[:pages].to_i * Book::AVERAGE_WORDS_PER_PAGE
-    = form.label :level, "レベル"
-    = form.number_field :level, step: 0.5, min: 0, max: 10
-    = form.label :read_at, "読んだ時刻"
-    = form.datetime_select :read_at
-    = form.submit value: "読んだ本に登録"
+    .card-content
+      .media
+        .media-content
+          p.title.is-4 = link_to @book_data[:title], @book_data[:url], target: "_blank"
+          p.subtitle.is-6 = @author_data[:author_name]
+          small
+            = @book_data[:pages]
+            | ページ
+          small
+            = @author_data[:author_name]
+          small
+            = @book_data[:price]
+            | 円
+          small
+            = @book_data[:asin]
+
+    footer.card-footer
+      = form_with model: @book, method: :post, local: true, url: users_books_path do |form|
+        = form.hidden_field :title, :value => @book_data[:title]
+        = form.hidden_field :url, :value => @book_data[:url]
+        = form.hidden_field :author_name, :value => @author_data[:author_name]
+        = form.hidden_field :isbn, :value => @book_data[:isbn]
+        = form.hidden_field :asin, :value => @book_data[:asin]
+        = form.hidden_field :image_url, :value => @book_data[:image_url]
+        = form.hidden_field :image_height, :value => @book_data[:image_height]
+        = form.hidden_field :image_width, :value => @book_data[:image_width]
+        = form.hidden_field :pages, :value => @book_data[:pages]
+        = form.hidden_field :price, :value => @book_data[:price]
+        = form.label :genre, "ジャンル"
+        = form.select :genre, ReadingHistory.genres.keys.to_a, {}
+        = form.label :review, "レビュー"
+        = form.text_area :review
+        = form.label :words, "語数"
+        = form.number_field :words, :value => @book_data[:pages].to_i * Book::AVERAGE_WORDS_PER_PAGE
+        = form.label :level, "レベル"
+        = form.number_field :level, step: 0.5, min: 0, max: 10
+        = form.label :read_at, "読んだ時刻"
+        = form.datetime_select :read_at
+        = form.submit value: "読んだ本に登録", class: "button is-success is-outlined"
 
