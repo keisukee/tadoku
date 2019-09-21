@@ -3,6 +3,9 @@ require 'nokogiri'
 
 module SearchAmazon
   # 初期設定
+  if Rails.env.development? || Rails.env.test?
+    Dotenv.load # herokuではDotenvは読み込まれないため
+  end
   Amazon::Ecs.configure do |options|
     options[:AWS_access_key_id] = ENV['AWS_ACCESS_KEY_ID'] # 必須
     options[:AWS_secret_key]    = ENV['AWS_SECRET_KEY'] # 必須
