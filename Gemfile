@@ -33,8 +33,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # frontend
-gem 'slim-rails'
+gem "bulma-rails"
 gem 'html2slim'
+gem 'slim-rails'
 
 # user
 gem 'devise'
