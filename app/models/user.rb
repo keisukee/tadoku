@@ -130,4 +130,12 @@ class User < ApplicationRecord
   def read_books
     books.joins(:reading_histories).preload(:reading_histories).where(reading_histories: { status: "read"})
   end
+
+  # def self.monthly_ranked_user(month)
+  #   self.where()
+  # end
+
+  # def entire_period_ranked_user
+
+  # end
 end
