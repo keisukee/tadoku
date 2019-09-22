@@ -1,0 +1,6 @@
+ul
+  li = link_to "年間データ", user_monthly_path(user_id: user.id, year: Date.today.year)
+  li = link_to "読んだ本 #{user.books.count}冊", user_books_path(user_id: user.id)
+  li = link_to "レビュー一覧 #{reviews.count}件", user_reviews_path(user_id: user.id)
+  li = link_to "プロフィール（累計データ）", user_path(user)
+  li = link_to "年間データ", user_monthly_path(user_id: user, year: Date.today.year)
