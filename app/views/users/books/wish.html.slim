@@ -1,5 +1,2 @@
 p books/wish
-- if @reading_histories.length > 0
-  - @reading_histories.each do |reading_history|
-    ul
-      li = reading_history.book.title
+= render "shared/books", books: @user.wish_books
