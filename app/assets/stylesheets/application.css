@@ -33,5 +33,18 @@ a:hover {
 *, *::before, *::after {
   padding: 0;
   margin: 0;
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", verdana, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
 }
 
+@media all and (max-width: 768px){
+  .container {
+    width: 320px;
+  }
+}
+
+@media all and (min-width: 769px){
+  .container {
+    width: 1004px;
+    margin: 0 auto;
+  }
+}

@@ -99,19 +99,35 @@ class User < ApplicationRecord
     reading_histories.where.not(review: "")
   end
 
-  def wish_books
+  def reading_histories_status_wish
     reading_histories.where(status: "wish")
   end
 
-  def stacked_books
+  def wish_books
+    books.joins(:reading_histories).preload(:reading_histories).where(reading_histories: { status: "wish"})
+  end
+
+  def reading_histories_status_stacked
     reading_histories.where(status: "stacked")
   end
 
-  def reading_books
+  def stacked_books
+    books.joins(:reading_histories).preload(:reading_histories).where(reading_histories: { status: "stacked"})
+  end
+
+  def reading_histories_status_reading
     reading_histories.where(status: "reading")
   end
 
-  def read_books
+  def reading_books
+    books.joins(:reading_histories).preload(:reading_histories).where(reading_histories: { status: "reading"})
+  end
+
+  def reading_histories_status_read
     reading_histories.where(status: "read")
+  end
+
+  def read_books
+    books.joins(:reading_histories).preload(:reading_histories).where(reading_histories: { status: "read"})
   end
 end

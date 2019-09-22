@@ -1,5 +1,4 @@
-p books/read
-- if @reading_histories.length > 0
-  - @reading_histories.each do |reading_history|
-    ul
-      li = reading_history.book.title
+.column.is-4
+  = render "shared/profile", user: @user, reviews: @user.reviews
+.users-books-read.column.is-8
+  = render "shared/books", books: @user.read_books
