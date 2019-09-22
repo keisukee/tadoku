@@ -1,0 +1,5 @@
+p books/stacked
+- if @reading_histories.length > 0
+  - @reading_histories.each do |reading_history|
+    ul
+      li = reading_history.book.title

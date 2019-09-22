@@ -1,5 +1,5 @@
 class Users::BooksController < ApplicationController
-  before_action :set_user, only: [:index, :show]
+  before_action :set_user, only: [:index, :show, :wish, :stacked, :reading, :read]
   before_action :book_params, only: [:create, :update]
   before_action :author_params, only: [:create, :update]
   before_action :reading_history_params, only: [:create, :update]
@@ -53,6 +53,22 @@ class Users::BooksController < ApplicationController
   end
 
   def destroy
+  end
+
+  def wish
+    @reading_histories = ReadingHistory.where(user_id: @user.id, status: "wish")
+  end
+
+  def stacked
+    @reading_histories = ReadingHistory.where(user_id: @user.id, status: "stacked")
+  end
+
+  def reading
+    @reading_histories = ReadingHistory.where(user_id: @user.id, status: "reading")
+  end
+
+  def read
+    @reading_histories = ReadingHistory.where(user_id: @user.id, status: "read")
   end
 
   private
