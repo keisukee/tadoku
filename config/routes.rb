@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
   resources :books do
     collection do
       get :search
@@ -36,4 +35,12 @@ Rails.application.routes.draw do
   end
 
   resources :authors, only: [:show, :index]
+
+  resources :rankings, only: [:index] do
+    collection do
+      get :books
+      get :users
+      get :authors
+    end
+  end
 end
