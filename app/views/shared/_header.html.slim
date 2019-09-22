@@ -45,7 +45,7 @@ header
                 = link_to 'Home', root_path, class: "button is-primary"
               li.control = link_to '本一覧', books_path, class: "button is-primary"
               li.control = link_to '著者一覧', authors_path, class: "button is-primary"
-              li.control = link_to 'ランキング', root_path, class: "button is-primary"
+              li.control = link_to 'ランキング', ranking_books_path, class: "button is-primary"
               - if current_user
                 li.control = link_to 'プロフィール', user_path(current_user), class: "button is-primary"
                 li.control = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "button is-primary"
