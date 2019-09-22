@@ -1,3 +1,4 @@
-p books/reading
-= render "shared/books", books: @user.reading_books
-Actress.joins(:movies).preload(:movies).where(movies: { year: 2013 })
+.column.is-4
+  = render "shared/profile", user: @user, reviews: @user.reviews
+.users-books-reading.column.is-8
+  = render "shared/books", books: @user.reading_books

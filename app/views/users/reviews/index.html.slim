@@ -1,11 +1,11 @@
-h1 Users::Reviews#index
-p Find me in app/views/users/reviews/index.html.slim
-
-- @reviews.each do |review|
-  ul
-    li = review.book.title
-    li = review.book.pages
-    li = review.book.author
-    li = review.review
-    li = review.words
-    li = review.level
+.column.is-4
+  = render "shared/profile", user: @user, reviews: @user.reviews
+.users-reviews-index.column.is-8
+  - @reviews.each do |review|
+    ul
+      li = review.book.title
+      li = review.book.pages
+      li = review.book.author
+      li = review.review
+      li = review.words
+      li = review.level
