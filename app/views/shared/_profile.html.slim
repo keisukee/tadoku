@@ -1,9 +1,10 @@
-ul
-  li = link_to "年間データ", user_monthly_path(user_id: user.id, year: Date.today.year)
-  li = link_to "読んだ本 #{user.read_books.count}冊", user_books_path(user_id: user.id)
-  li = link_to "読んでいる本 #{user.reading_books.count}冊", reading_user_books_path(user_id: user.id)
-  li = link_to "積読本 #{user.stacked_books.count}冊", stacked_user_books_path(user_id: user.id)
-  li = link_to "読みたい本 #{user.wish_books.count}冊", wish_user_books_path(user_id: user.id)
-  li = link_to "レビュー一覧 #{reviews.count}件", user_reviews_path(user_id: user.id)
-  li = link_to "プロフィール（累計データ）", user_path(user)
-  li = link_to "年間データ", user_monthly_path(user_id: user, year: Date.today.year)
+.profile
+  ul
+    li = link_to "年間データ", user_monthly_path(user_id: user.id, year: Date.today.year)
+    li = link_to "読んだ本 #{user.read_books.count}冊", user_books_path(user_id: user.id)
+    li = link_to "読んでいる本 #{user.reading_books.count}冊", reading_user_books_path(user_id: user.id)
+    li = link_to "積読本 #{user.stacked_books.count}冊", stacked_user_books_path(user_id: user.id)
+    li = link_to "読みたい本 #{user.wish_books.count}冊", wish_user_books_path(user_id: user.id)
+    li = link_to "レビュー一覧 #{reviews.count}件", user_reviews_path(user_id: user.id)
+    li = link_to "プロフィール（累計データ）", user_path(user)
+    li = link_to "年間データ", user_monthly_path(user_id: user, year: Date.today.year)

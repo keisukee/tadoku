@@ -18,5 +18,6 @@ html
       = alert
     - flash.each do |key, value|
       = content_tag(:div, value, class: key)
-    = yield
+    .container.columns.is-multiline
+      = yield
     = render 'shared/footer'
