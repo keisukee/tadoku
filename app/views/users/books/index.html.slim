@@ -1,6 +1,8 @@
 h1 Users::Books#index
 p Find me in app/views/users/books/index.html.slim
 
+= render "shared/profile", user: @user, reviews: @user.reviews
+
 - @books.each do |book|
   ul
     li = image_tag book.image_url, width: book.image_width, height: book.image_height

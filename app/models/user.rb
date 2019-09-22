@@ -94,4 +94,8 @@ class User < ApplicationRecord
     end
     book_number_cumulated
   end
+
+  def reviews
+    self.reading_histories.where.not(review: "")
+  end
 end

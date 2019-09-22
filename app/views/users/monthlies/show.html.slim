@@ -1,8 +1,7 @@
 h1 Users::Monthlies#show
 p Find me in app/views/users/monthlies/show.html.slim
 
-p = link_to "累計データ", user_monthly_path(user_id: @user.id, year: Date.today.year)
-
+= render "shared/profile", user: @user, reviews: @user.reviews
 p = link_to "#{@previous_year}年のデータ", user_monthly_path(user_id: @user, year: @previous_year)
 p = link_to "#{@next_year}年のデータ", user_monthly_path(user_id: @user, year: @next_year)
 

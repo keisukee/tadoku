@@ -1,6 +1,8 @@
 h1 Users::Books#new
 p Find me in app/views/users/books/new.html.slim
 
+= render "shared/profile", user: @user, reviews: @user.reviews
+
 p = current_user.name
 p = link_to "他の本を登録する", search_books_path
 - unless @book_data.empty? || @author_data.empty?
