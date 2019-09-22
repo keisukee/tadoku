@@ -96,6 +96,22 @@ class User < ApplicationRecord
   end
 
   def reviews
-    self.reading_histories.where.not(review: "")
+    reading_histories.where.not(review: "")
+  end
+
+  def wish_books
+    reading_histories.where(status: "wish")
+  end
+
+  def stacked_books
+    reading_histories.where(status: "stacked")
+  end
+
+  def reading_books
+    reading_histories.where(status: "reading")
+  end
+
+  def read_books
+    reading_histories.where(status: "read")
   end
 end
