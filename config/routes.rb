@@ -1,21 +1,6 @@
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
-  namespace :users do
-    get 'reviews/index'
-  end
-  get 'authors/show'
-  get 'authors/index'
-  get 'author/show'
-  get 'author/index'
-  namespace :users do
-    get 'books/index'
-    get 'books/new'
-    get 'books/create'
-    get 'books/edit'
-    get 'books/update'
-    get 'books/destroy'
-  end
   root to: "home#index"
   devise_for :users, controllers: {
      sessions: 'users/sessions',
@@ -33,7 +18,14 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: [:show, :edit, :index, :update, :destroy] do
-    resources :books, only: [:index, :update], controller: 'users/books'
+    resources :books, only: [:index, :update], controller: 'users/books' do
+      collection do
+        get :wish
+        get :stacked
+        get :reading
+        get :read
+      end
+    end
     resources :reviews, only: [:index], controller: 'users/reviews'
     resources :monthlies, only: [:show, :index], param: :year, controller: 'users/monthlies'
   end
@@ -43,5 +35,4 @@ Rails.application.routes.draw do
   end
 
   resources :authors, only: [:show, :index]
-
 end
