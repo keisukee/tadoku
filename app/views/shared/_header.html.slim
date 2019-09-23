@@ -1,18 +1,19 @@
 header
   nav.navbar.is-primary
     .navbar-brand
-      h1.navbar-item
+      h1.navbar-item.title
         = link_to "多読マラソン", root_path, class: ""
+      small あなたの多読量を記録・管理
     #navbarExampleTransparentExample.navbar-menu
       .navbar-start
         .navbar-item.has-dropdown.is-hoverable
         p あなたの多読量を記録・管理
         .form.navbar-item
-          = form_with url: search_books_path, method: :get, local: true do |form|
-            li
-              p 検索
-              = form.text_field :search, placeholder: '入力してください'
-              = form.submit value: 'Submit'
+          .field
+            = form_with url: search_books_path, method: :get, local: true do |form|
+              .control
+                = form.text_field :search, placeholder: '本を検索する', class: "input is-small"
+                = form.submit value: 'Submit', class: "button is-small"
       .navbar-end
         .navbar-item.has-dropdown.is-hoverable
           a.navbar-link href="/"
@@ -28,20 +29,6 @@ header
             - else
               = link_to '新規登録（無料）', new_user_registration_path, class: "navbar-item"
               = link_to 'ログイン', user_session_path, class: "navbar-item"
-
-          / .field.is-grouped
-          /   li.control
-          /     a.bd-tw-button.button data-social-action="tweet" data-social-network="Twitter" data-social-target="http://localhost:4000" href=("https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=http://localhost:4000&amp;via=jgthms") target="_blank" 
-          /       span.icon
-          /         i.fab.fa-twitter
-          /       span
-          /         | Tweet
-          /   li.control
-          /     a.button.is-primary href="https://github.com/jgthms/bulma/releases/download/0.7.5/bulma-0.7.5.zip" 
-          /       span.icon
-          /         i.fas.fa-download
-          /       span Download
-
 
 
 
