@@ -1,8 +1,7 @@
+.column.is-4
+  = render "shared/side_bar"
 .authors-index.column.is-8
   h2.title 著者一覧
   - @authors.each do |author|
     span.subtitle
       = link_to author.name, author_path(author)
-
-
-
