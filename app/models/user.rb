@@ -130,4 +130,15 @@ class User < ApplicationRecord
   def read_books
     books.joins(:reading_histories).preload(:reading_histories).where(reading_histories: { status: "read"})
   end
+
+  # TODO: ランキング系はリリース後に実装
+  def self.monthly_ranked_user(month)
+    # TODO: メソッド修正
+    self.joins(:reading_histories).where(reading_histories: {status: "read"}).select('users.*', 'count(reading_histories.id) AS book').group('users.id').order('book desc')
+  end
+
+  def entire_period_ranked_user
+    # TODO: メソッド修正
+    self.joins(:reading_histories).where(reading_histories: {status: "read"}).select('users.*', 'count(reading_histories.id) AS book').group('users.id').order('book desc')
+  end
 end
