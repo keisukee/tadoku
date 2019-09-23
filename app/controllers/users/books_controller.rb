@@ -41,7 +41,8 @@ class Users::BooksController < ApplicationController
                           review: reading_history_params[:review],
                           level: reading_history_params[:level],
                           words: reading_history_params[:words],
-                          genre: reading_history_params[:genre])
+                          genre: reading_history_params[:genre],
+                          status: reading_history_params[:status])
 
     redirect_to user_books_path(current_user)
   end
@@ -86,7 +87,7 @@ class Users::BooksController < ApplicationController
   end
 
   def reading_history_params
-    params.require(:book).permit("read_at(1i)", "read_at(2i)", "read_at(3i)", "read_at(4i)", "read_at(5i)", :review, :words, :level, :genre)
+    params.require(:book).permit("read_at(1i)", "read_at(2i)", "read_at(3i)", "read_at(4i)", "read_at(5i)", :review, :words, :level, :genre, :status)
   end
 
 end
