@@ -1,5 +1,8 @@
 .profile
-  ul
+  aside.menu
+    p.menu-label
+      | ユーザー情報
+  ul.menu-list
     li = link_to "年間データ", user_monthly_path(user_id: user.id, year: Date.today.year)
     li = link_to "読んだ本 #{user.read_books.count}冊", user_books_path(user_id: user.id)
     li = link_to "読んでいる本 #{user.reading_books.count}冊", reading_user_books_path(user_id: user.id)
