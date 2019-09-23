@@ -11,13 +11,14 @@ html
     = include_gon
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    = render 'shared/header'
-    p.notice
-      = notice
-    p.alert
-      = alert
-    - flash.each do |key, value|
-      = content_tag(:div, value, class: key)
-    .container.columns.is-multiline
-      = yield
-    = render 'shared/footer'
+    .wrapper
+      = render 'shared/header'
+      p.notice
+        = notice
+      p.alert
+        = alert
+      - flash.each do |key, value|
+        = content_tag(:div, value, class: key)
+      .container.columns.is-multiline
+        = yield
+      = render 'shared/footer'
