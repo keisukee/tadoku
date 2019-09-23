@@ -1,5 +1,5 @@
-h1 Books#index
-p Find me in app/views/books/index.html.slim
-
-= render '/shared/books', books: @books
-
+.column.is-4
+  = render "shared/side_bar"
+.books-index.column.is-8
+  h2.title 本一覧
+  = render '/shared/books', books: @books

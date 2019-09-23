@@ -1,0 +1,15 @@
+- if users.count > 0
+  .shared-users
+    ul
+      - users.each do |user|
+        li.list
+          .list-left
+            / .list_image
+            /   = link_to user_path(user) do
+            /     = image_tag user.image_url, width: user.image_width, height: user.image_height
+          .list-right
+            .list_name
+              = link_to user.name, user_path(user)
+            .list_words
+              = user.words
+              | 語
