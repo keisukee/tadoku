@@ -42,10 +42,6 @@ class BooksController < ApplicationController
     @books_data = Book.collect_books(@keyword) # 配列の中にハッシュが入っている. ex) [{:url=>"https://www.amazon.co.jp", :image_url=>"https://images-fe.ssl-images-amazon.com/images.jpg", :image_height=>"160160", :image_width=>"107107", :author=>"John Doe", :isbn=>"1975328191", :pages=>"224", :title=>"hogehoge"}]
   end
 
-  def ranking
-    @books = Book.select('books.*', 'count(reading_histories.id) AS users').left_joins(:reading_histories).group('books.id').order('users desc') # TODO: これだと、reading_historyのstatusを考慮できていないので修正する
-  end
-
   private
 
   def set_book

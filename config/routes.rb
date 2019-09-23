@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   resources :books do
     collection do
       get :search
-      get :ranking
     end
   end
   resources :users, only: [:show, :edit, :index, :update, :destroy] do
