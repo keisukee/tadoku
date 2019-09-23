@@ -6,7 +6,7 @@ class Users::BooksController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit]
 
   def index
-    @books = @user.books
+    @books = @user.read_books
     @reading_histories = ReadingHistory.where(user_id: @user.id)
   end
 

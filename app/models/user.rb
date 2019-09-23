@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
   def calc_words
     count = 0
-    self.books.each do |book|
+    self.read_books.each do |book|
       count += book.length
     end
     count
@@ -30,10 +30,10 @@ class User < ApplicationRecord
     (0..11).each do |i|
       bom = t + i.month # bom: beginning of month
       eom = (t + i.month).end_of_month # eof: end of month
-      books = self.books.where(["? < read_at and read_at < ?", bom, eom])
+      books_per_month = reading_histories.where(["? < read_at and read_at < ?", bom, eom])
       count = 0
-      books.each do |b|
-        count += b.length
+      books_per_month.each do |b|
+        count += b.words
       end
       words_per_month << count
     end
@@ -43,25 +43,25 @@ class User < ApplicationRecord
   # 累計グラフの縦軸
   def calc_cumulative_words
     # グラフには20本のvarを出す
-    number_of_books = self.books.count
+    number_of_books = self.read_books.count
     count = 0
     words_cumulated = []
     book_count = 0
 
     if number_of_books >= 0 && number_of_books <= 20
-      self.books.each do |book|
+      self.read_books.each do |book|
         count += book.length
         words_cumulated << count
       end
     elsif number_of_books >= 21 && number_of_books <= 40
-      self.books.each do |book|
+      self.read_books.each do |book|
         book_count += 1
         start_book_count = number_of_books - 20 # 例えば30冊本を読んだとしたら,30 - 20 = 10で、10冊目から30冊目までの20本の縦棒にしたい
         count += book.length
         words_cumulated << count if book_count >= start_book_count
       end
     else
-      self.books.each do |book|
+      self.read_books.each do |book|
         book_count += 1
         start_book_count = 20 # 例えば50冊本を読んだとしたら,50 - 20 = 30で、30冊目から50冊目までの20本の縦棒にしたい
         count += book.length
@@ -73,7 +73,7 @@ class User < ApplicationRecord
 
   # 累計グラフの横軸の本の冊数を出す
   def cumulated_book_number
-    number_of_books = self.books.count
+    number_of_books = self.read_books.count
     book_number_cumulated = []
     book_count = 0
 
