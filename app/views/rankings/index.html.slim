@@ -1,12 +1,22 @@
 .column.is-4
-  ul
-    li.control = link_to '本ランキング', books_rankings_path, class: "button is-primary"
-    li.control = link_to '著者ランキング', authors_rankings_path, class: "button is-primary"
-    li.control = link_to 'ユーザーランキング', users_rankings_path, class: "button is-primary"
+  aside.menu
+    p.menu-label
+      | 各種ランキング
+    ul.menu-list
+      li
+        = link_to 'ランキング', rankings_path
+      li
+        = link_to '本ランキング', books_rankings_path
+      li
+        = link_to '著者ランキング', authors_rankings_path
+      li
+        = link_to 'ユーザーランキング', users_rankings_path
 .column.is-8
-  section.monthlyRanking
-    h2 先月と今月の読書数ランキングベスト10
-    
-  section.totalRanking
-    h2 国民総語数ランキングベスト10
+  h2
+    i.far.fa-smile-wink
+    | Comming Soon...
+  / section.monthlyRanking
+  /   h2 先月と今月の読書数ランキングベスト10
+  / section.totalRanking
+  /   h2 国民総語数ランキングベスト10
 

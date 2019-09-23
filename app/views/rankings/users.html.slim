@@ -1,2 +1,17 @@
-h1 Rankings#users
-p Find me in app/views/rankings/users.html.slim
+.column.is-4
+  aside.menu
+    p.menu-label
+      | 各種ランキング
+    ul.menu-list
+      li
+        = link_to 'ランキング', rankings_path
+      li
+        = link_to '本ランキング', books_rankings_path
+      li
+        = link_to '著者ランキング', authors_rankings_path
+      li
+        = link_to 'ユーザーランキング', users_rankings_path
+.column.is-8
+  h2
+    i.far.fa-smile-wink
+    | Comming Soon...
