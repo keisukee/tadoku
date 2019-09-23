@@ -30,7 +30,7 @@ class User < ApplicationRecord
     (0..11).each do |i|
       bom = t + i.month # bom: beginning of month
       eom = (t + i.month).end_of_month # eof: end of month
-      books = self.books.where(["? < read_at and read_at < ?", bom, eom])
+      books = self.books.where(["? < read_at and read_at < ?", bom, eom]) # TODO: booksじゃなくてreading_historiesかも
       count = 0
       books.each do |b|
         count += b.length
@@ -129,5 +129,16 @@ class User < ApplicationRecord
 
   def read_books
     books.joins(:reading_histories).preload(:reading_histories).where(reading_histories: { status: "read"})
+  end
+
+  # TODO: ランキング系はリリース後に実装
+  def self.monthly_ranked_user(month)
+    # TODO: メソッド修正
+    self.joins(:reading_histories).where(reading_histories: {status: "read"}).select('users.*', 'count(reading_histories.id) AS book').group('users.id').order('book desc')
+  end
+
+  def entire_period_ranked_user
+    # TODO: メソッド修正
+    self.joins(:reading_histories).where(reading_histories: {status: "read"}).select('users.*', 'count(reading_histories.id) AS book').group('users.id').order('book desc')
   end
 end
