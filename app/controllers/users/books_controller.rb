@@ -13,6 +13,7 @@ class Users::BooksController < ApplicationController
   def new
     @book_data = book_params || ""
     @author_data = author_params || ""
+    @reading_history_data = reading_history_params || ""
     @book = Book.new
   end
 

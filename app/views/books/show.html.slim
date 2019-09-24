@@ -19,7 +19,7 @@
           = form.hidden_field :pages, :value => @book.pages
           = form.hidden_field :price, :value => @book.price
           = form.hidden_field :status, :value => "read"
-          = form.submit value: "読んだ本に登録"
+          = form.submit value: "読んだ本に登録", class: "button"
       li
         = form_with model: @book, method: :get, local: true, url: new_users_book_path do |form|
           = form.hidden_field :author_name, :value => @book.author.name
@@ -33,7 +33,7 @@
           = form.hidden_field :pages, :value => @book.pages
           = form.hidden_field :price, :value => @book.price
           = form.hidden_field :status, :value => "reading"
-          = form.submit value: "読書中に登録"
+          = form.submit value: "読書中に登録", class: "button"
       li
         = form_with model: @book, method: :get, local: true, url: new_users_book_path do |form|
           = form.hidden_field :author_name, :value => @book.author.name
@@ -47,7 +47,7 @@
           = form.hidden_field :pages, :value => @book.pages
           = form.hidden_field :price, :value => @book.price
           = form.hidden_field :status, :value => "wish"
-          = form.submit value: "読みたい本に登録"
+          = form.submit value: "読みたい本に登録", class: "button"
       li
         = form_with model: @book, method: :get, local: true, url: new_users_book_path do |form|
           = form.hidden_field :author_name, :value => @book.author.name
@@ -61,4 +61,4 @@
           = form.hidden_field :pages, :value => @book.pages
           = form.hidden_field :price, :value => @book.price
           = form.hidden_field :status, :value => "stacked"
-          = form.submit value: "積読本に登録"
+          = form.submit value: "積読本に登録", class: "button"
