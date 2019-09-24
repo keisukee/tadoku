@@ -13,6 +13,7 @@ class Users::BooksController < ApplicationController
   def new
     @book_data = book_params || ""
     @author_data = author_params || ""
+    @reading_history_data = reading_history_params || ""
     @book = Book.new
   end
 
@@ -27,13 +28,14 @@ class Users::BooksController < ApplicationController
     end
 
     @book = Book.find_by(asin: book_params[:asin])
-
-    year = reading_history_params["read_at(1i)"].to_i
-    month = reading_history_params["read_at(2i)"].to_i
-    day = reading_history_params["read_at(3i)"].to_i
-    hour = reading_history_params["read_at(4i)"].to_i
-    minute = reading_history_params["read_at(5i)"].to_i
-    @read_at = DateTime.new(year, month, day, hour, minute)
+    unless reading_history_params["read_at(1i)"].nil?
+      year = reading_history_params["read_at(1i)"].to_i
+      month = reading_history_params["read_at(2i)"].to_i
+      day = reading_history_params["read_at(3i)"].to_i
+      hour = reading_history_params["read_at(4i)"].to_i
+      minute = reading_history_params["read_at(5i)"].to_i
+      @read_at = DateTime.new(year, month, day, hour, minute)
+    end
 
     ReadingHistory.create(user_id: current_user.id,
                           book_id: @book.id,
@@ -41,7 +43,8 @@ class Users::BooksController < ApplicationController
                           review: reading_history_params[:review],
                           level: reading_history_params[:level],
                           words: reading_history_params[:words],
-                          genre: reading_history_params[:genre])
+                          genre: reading_history_params[:genre],
+                          status: reading_history_params[:status])
 
     redirect_to user_books_path(current_user)
   end
@@ -86,7 +89,7 @@ class Users::BooksController < ApplicationController
   end
 
   def reading_history_params
-    params.require(:book).permit("read_at(1i)", "read_at(2i)", "read_at(3i)", "read_at(4i)", "read_at(5i)", :review, :words, :level, :genre)
+    params.require(:book).permit("read_at(1i)", "read_at(2i)", "read_at(3i)", "read_at(4i)", "read_at(5i)", :review, :words, :level, :genre, :status)
   end
 
 end
