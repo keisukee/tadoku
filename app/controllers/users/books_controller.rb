@@ -28,13 +28,14 @@ class Users::BooksController < ApplicationController
     end
 
     @book = Book.find_by(asin: book_params[:asin])
-
-    year = reading_history_params["read_at(1i)"].to_i
-    month = reading_history_params["read_at(2i)"].to_i
-    day = reading_history_params["read_at(3i)"].to_i
-    hour = reading_history_params["read_at(4i)"].to_i
-    minute = reading_history_params["read_at(5i)"].to_i
-    @read_at = DateTime.new(year, month, day, hour, minute)
+    unless reading_history_params["read_at(1i)"].nil?
+      year = reading_history_params["read_at(1i)"].to_i
+      month = reading_history_params["read_at(2i)"].to_i
+      day = reading_history_params["read_at(3i)"].to_i
+      hour = reading_history_params["read_at(4i)"].to_i
+      minute = reading_history_params["read_at(5i)"].to_i
+      @read_at = DateTime.new(year, month, day, hour, minute)
+    end
 
     ReadingHistory.create(user_id: current_user.id,
                           book_id: @book.id,
