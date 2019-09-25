@@ -32,5 +32,32 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe "userが読んだ本を登録した場合" do
+    let!(:user1) { create(:user) }
+
+    let(:book1) { create(:book) }
+    let(:reading_history1) { create(:reading_history_status_read, user: user1, book: book1) }
+
+    let(:book2) { create(:book) }
+    let(:reading_history2) { create(:reading_history_status_read, user: user1, book: book2) }
+
+    let(:book3) { create(:book) }
+    let(:reading_history3) { create(:reading_history_status_read, user: user1, book: book3) }
+
+    before do
+      puts reading_history1.inspect
+      puts "-----"
+      puts reading_history2.inspect
+      puts "-----"
+      puts reading_history3.inspect
+      puts "-----"
+      puts user1.read_books
+      user1.save
+    end
+    it "読んだ本の語数が正確に反映されること" do
+      total = reading_history1.words + reading_history2.words + reading_history3.words
+      expect(user1.words).to eq(total)
+    end
+  end
 end

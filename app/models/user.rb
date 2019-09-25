@@ -43,7 +43,7 @@ class User < ApplicationRecord
 
   # TODO: seedでデータを作ろうとするとエラーが出るので、何かがおかしい
   before_save do
-    self.words = self.calc_words
+    self.words = self.calc_words.to_s
   end
 
   def calc_words

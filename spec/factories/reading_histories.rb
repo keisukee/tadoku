@@ -24,8 +24,18 @@ FactoryBot.define do
       read
     end
 
+    factory :reading_history_status_read_one_month_ago do
+      read
+    end
+
+    factory :reading_history_status_read_two_month_ago do
+      read
+      one_month_ago
+    end
+
     factory :reading_history_status_reading do
       reading
+      two_month_ago
     end
 
     factory :reading_history_status_stacked do
@@ -41,6 +51,7 @@ FactoryBot.define do
       review { "review" }
       genre { "sf" }
       level { 5.5 }
+      read_at { DateTime.now }
     end
 
     trait :reading do
@@ -54,5 +65,14 @@ FactoryBot.define do
     trait :wish do
       status { "wish" }
     end
+
+    trait :one_month_ago do
+      read_at { DateTime.now - 1.month }
+    end
+
+    trait :two_month_ago do
+      read_at { DateTime.now - 2.month }
+    end
+
   end
 end
