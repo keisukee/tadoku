@@ -38,7 +38,11 @@ a:hover {
 
 @media all and (max-width: 768px){
   .container {
-    width: 320px;
+    /* width: 320px; */
+    padding: 0 10px;
+  }
+  input {
+    border: 1px solid #CCC;
   }
 }
 
