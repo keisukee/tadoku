@@ -13,12 +13,9 @@ html
   body
     .wrapper
       = render 'shared/header'
-      p.notice
-        = notice
-      p.alert
-        = alert
-      - flash.each do |key, value|
-        = content_tag(:div, value, class: key)
+      - if flash
+        - flash.each do |type, message|
+          = message
       .container.columns.is-multiline
         = yield
       = render 'shared/footer'
