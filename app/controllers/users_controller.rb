@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:account]
+
   def index
     @users = User.all
-  end
-
-  def edit
   end
 
   def show
@@ -18,5 +17,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
+  end
+
+  def account
+
   end
 end
