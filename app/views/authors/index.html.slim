@@ -3,5 +3,5 @@
 .authors-index.column.is-8
   h2.title 著者一覧
   - @authors.each do |author|
-    span.subtitle
+    span.authorName
       = link_to author.name, author_path(author)
