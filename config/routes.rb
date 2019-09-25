@@ -16,7 +16,10 @@ Rails.application.routes.draw do
       get :search
     end
   end
-  resources :users, only: [:show, :edit, :index, :update, :destroy] do
+  resources :users, only: [:show, :index, :update, :destroy] do
+    collection do
+      get :account
+    end
     resources :books, only: [:index, :update], controller: 'users/books' do
       collection do
         get :wish

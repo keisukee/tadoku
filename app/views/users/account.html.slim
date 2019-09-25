@@ -1,0 +1,64 @@
+.column.is-4
+  = render "shared/profile", user: current_user, reviews: current_user.reviews
+.users-account.column.is-8
+  h1
+    = current_user.name
+    | のアカウント情報
+  section.accontInfo
+    table.table
+      tr
+        th.th1 国民No
+        td.td_l
+          | 3385　（入国：2017年10月22日）
+      tr
+        th.th1 ニックネーム
+        td.td_l
+          input name="usr_id" style="width:200px;" type="text" value="hogehoge" /
+          br/
+          font color="#556b2f"  30桁以内の任意の文字で入力してください。他の人と重複することができません。
+      tr
+        th.th1 パスワード
+        td.td_l
+          input name="usr_pw" type="password" value="wCskEjJJ" /
+          br/
+          font color="#556b2f"  10桁以内の英数字で入力してください
+      tr
+        th.th1
+          | アバター
+          br>/
+          | （写真）
+        td.td_l
+          | <input type="file" name="pic" size="40" value""
+          br>/
+          | ※画像種類(jpg, gif, png)のみ
+          br/
+          font color="#556b2f"  100x100ピクセルサイズがベストサイズです。
+      tr
+        th.th1
+          | サイト（ブログ）名
+        td.td_l
+          input name="sitename" size="40" type="text" value="" /
+      tr
+        th.th1
+          | サイト（ブログ）URL
+        td.td_l
+          input name="siteurl" size="40" type="text" value="" /
+      tr
+        th.th1 多読開始日
+        td.td_l
+          input#datepicker name="startdate" size="20" type="text" value="2017-10-01" /
+      tr
+        th.th1
+          | メッセージ
+          br>/
+          | （意気込みなど）
+        td.td_l
+          textarea cols="50" name="usr_msg" rows="10" style="width:90%;height:100px;" 
+      tr
+        td.td_c colspan="2" 
+          input name="submit_toroku" type="submit" value="登録・変更する" /
+
+  ul
+    li = link_to "パスワード変更・退会はこちら", edit_user_registration_path
+
+
