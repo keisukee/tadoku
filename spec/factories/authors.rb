@@ -8,3 +8,8 @@
 #  updated_at :datetime         not null
 #
 
+FactoryBot.define do
+  factory :author do
+    sequence(:name) { |n| "author#{n}" }
+  end
+end

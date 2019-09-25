@@ -31,6 +31,10 @@
 
 FactoryBot.define do
   factory :user do
-    name { "John" }
+    sequence(:name) { |n| "test#{n}" }
+    sequence(:email) { |n| "test#{n}@example.com" }
+    password { "password" }
+    confirmed_at { DateTime.now }
+    start_at { DateTime.now }
   end
 end
