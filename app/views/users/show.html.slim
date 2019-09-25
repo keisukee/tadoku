@@ -1,11 +1,11 @@
 .column.is-4
   = render "shared/profile", user: @user, reviews: @user.reviews
 .users-show.column.is-8
-
-  h1 = @user.name
-
-  .reach-graph
-    h2.reach-title 累計多読語数
+  h2.subtitle
+    = @user.name
+    | のグラフ
+  .reachGraph
+    h2.reach-title.subtitle 累計多読語数
     canvas#myChart height="25" width="43"
     javascript:
       var ctx = document.getElementById('myChart').getContext('2d');
@@ -32,8 +32,7 @@
           }
       });
 
-
-  h2 最近読んだ本
+  h2.subtitle 最近読んだ本
   = render "shared/books", books: @books, reviews: @user.reviews
 
 
