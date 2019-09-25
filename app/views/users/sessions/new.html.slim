@@ -1,18 +1,19 @@
-h2
-  | Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email, class: "label"
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email", class: "input"
-  .field
-    = f.label :password, class: "label"
-    br
-    = f.password_field :password, autocomplete: "current-password", class: "input"
-  - if devise_mapping.rememberable?
+.column.is-4
+  = render "shared/side_bar"
+.users-sessions-new.column.is-8
+  h2
+    | ログイン
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .field
-      = f.check_box :remember_me
-      = f.label :remember_me, class: "label"
-  .actions
-    = f.submit "Log in", class: "button is-link"
-= render "users/shared/links"
+      = f.label :email, class: "label"
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "input"
+    .field
+      = f.label :password, class: "label"
+      = f.password_field :password, autocomplete: "current-password", class: "input"
+    - if devise_mapping.rememberable?
+      .field
+        = f.check_box :remember_me
+        = f.label :remember_me, class: "label"
+    .actions
+      = f.submit "ログイン", class: "button is-link"
+  = render "users/shared/links"

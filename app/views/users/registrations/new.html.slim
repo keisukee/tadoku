@@ -1,30 +1,29 @@
-h2
-  | 新規登録
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :name, class: "label"
-    br
-    = f.text_field :name, class: "input"
-  .field
-    = f.label :email, class: "label"
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email", class: "input"
-  .field
-    = f.label :password, class: "label"
-    - if @minimum_password_length
-      em
-        | (
-        = @minimum_password_length
-        |  characters minimum)
-    br
-    = f.password_field :password, autocomplete: "new-password", class: "input"
-  .field
-    = f.label :password_confirmation, class: "label"
-    br
-    = f.password_field :password_confirmation, autocomplete: "new-password", class: "input"
-  .field
-    .actions
-      = f.submit "登録", class: "button is-link"
+.column.is-4
+  = render "shared/side_bar"
+.users-registrations-new.column.is-8
+  h2
+    | 新規登録
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = render "devise/shared/error_messages", resource: resource
+    .field
+      = f.label :name, class: "label"
+      = f.text_field :name, class: "input"
+    .field
+      = f.label :email, class: "label"
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "input"
+    .field
+      = f.label :password, class: "label"
+      - if @minimum_password_length
+        em
+          | (最小
+          = @minimum_password_length
+          |  文字)
+      = f.password_field :password, autocomplete: "new-password", class: "input"
+    .field
+      = f.label :password_confirmation, class: "label"
+      = f.password_field :password_confirmation, autocomplete: "new-password", class: "input"
+    .field
+      .actions
+        = f.submit "登録", class: "button is-link"
 
-= render "users/shared/links"
+  = render "users/shared/links"
