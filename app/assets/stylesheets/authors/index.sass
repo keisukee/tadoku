@@ -1,5 +1,5 @@
 .authors-index
-  .subtitle
+  .authorName
     width: 200px
     height: 30px
     line-height: 30px
@@ -11,4 +11,16 @@
       color: #222
       &:hover
         text-decoration: none
+
+@media all and (max-width: 769px)
+  .authors-index
+    .authorName
+      display: inline
+      white-space: pre-wrap
+      word-wrap:break-word
+      padding: 3px
+      margin: 3px
+
+
+
 
