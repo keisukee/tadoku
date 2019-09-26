@@ -30,6 +30,7 @@ FactoryBot.define do
     image_height { 300 }
     image_width { 200 }
     price { "1500" }
+    length { 50000 }
     author
   end
 end

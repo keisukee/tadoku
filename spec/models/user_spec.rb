@@ -57,7 +57,7 @@ RSpec.describe User, type: :model do
     end
     it "読んだ本の語数が正確に反映されること" do
       total = reading_history1.words + reading_history2.words + reading_history3.words
-      expect(user1.words).to eq(total)
+      expect(user1.words).to eq(total.to_s)
     end
   end
 end

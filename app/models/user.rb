@@ -48,8 +48,8 @@ class User < ApplicationRecord
 
   def calc_words
     count = 0
-    self.read_books.each do |book|
-      count += book.length
+    self.reading_histories_status_read.each do |reading_history|
+      count += reading_history.words unless reading_history.words.nil?
     end
     count
   end
