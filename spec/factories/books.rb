@@ -4,7 +4,7 @@
 #
 #  id           :bigint           not null, primary key
 #  title        :string(255)
-#  length       :integer
+#  words        :integer
 #  isbn         :string(255)
 #  level        :string(255)
 #  pages        :integer
@@ -30,7 +30,7 @@ FactoryBot.define do
     image_height { 300 }
     image_width { 200 }
     price { "1500" }
-    length { 50000 }
+    words { 50000 }
     author
   end
 end

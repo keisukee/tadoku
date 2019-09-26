@@ -4,7 +4,7 @@
 #
 #  id           :bigint           not null, primary key
 #  title        :string(255)
-#  length       :integer
+#  words        :integer
 #  isbn         :string(255)
 #  level        :string(255)
 #  pages        :integer
