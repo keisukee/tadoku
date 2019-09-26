@@ -81,7 +81,7 @@ class Users::BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :isbn, :asin, :url, :image_url, :image_height, :image_width, :pages, :price)
+    params.require(:book).permit(:title, :isbn, :asin, :url, :image_url, :image_height, :image_width, :pages, :price, :words)
   end
 
   def author_params

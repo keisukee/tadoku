@@ -4,7 +4,7 @@
 #
 #  id           :bigint           not null, primary key
 #  title        :string(255)
-#  length       :integer
+#  words       :integer
 #  isbn         :string(255)
 #  level        :string(255)
 #  pages        :integer
@@ -37,7 +37,7 @@ class Book < ApplicationRecord
   AVERAGE_WORDS_PER_PAGE = 250
 
   before_save do
-    self.length = estimate_book_length
+    self.words = estimate_book_words
   end
 
   def self.find_books(keyword)
@@ -52,7 +52,7 @@ class Book < ApplicationRecord
     SearchAmazon.collect_books(keyword)
   end
 
-  def estimate_book_length
+  def estimate_book_words
     pages * AVERAGE_WORDS_PER_PAGE
   end
 end

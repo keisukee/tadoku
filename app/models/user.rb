@@ -81,21 +81,21 @@ class User < ApplicationRecord
 
     if number_of_books >= 0 && number_of_books <= 20
       self.read_books.each do |book|
-        count += book.length
+        count += book.words
         words_cumulated << count
       end
     elsif number_of_books >= 21 && number_of_books <= 40
       self.read_books.each do |book|
         book_count += 1
         start_book_count = number_of_books - 20 # 例えば30冊本を読んだとしたら,30 - 20 = 10で、10冊目から30冊目までの20本の縦棒にしたい
-        count += book.length
+        count += book.words
         words_cumulated << count if book_count >= start_book_count
       end
     else
       self.read_books.each do |book|
         book_count += 1
         start_book_count = 20 # 例えば50冊本を読んだとしたら,50 - 20 = 30で、30冊目から50冊目までの20本の縦棒にしたい
-        count += book.length
+        count += book.words
         words_cumulated << count if book_count >= start_book_count
       end
     end
