@@ -21,4 +21,14 @@ class ReadingHistory < ApplicationRecord
 
   belongs_to :user
   belongs_to :book
+
+  validates :words, presence: true, if: :status_read?
+
+  after_create do
+    user.update(words: user.calc_words)
+  end
+
+  def status_read?
+    status == "read"
+  end
 end
