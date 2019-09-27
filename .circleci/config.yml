@@ -13,6 +13,7 @@ jobs:
           RAILS_DB_HOST: 127.0.0.1
           RAILS_DB_USERNAME: 'root'
           MYSQL_ROOT_PASSWORD: ''
+      - image: circleci/mysql:5.7.23
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
