@@ -54,6 +54,9 @@ jobs:
               --out /tmp/test-results/rspec.xml \
               --format progress \
               $TEST_FILES
+          environment:
+            RAILS_ENV: test
+
 
       # collect reports
       - store_test_results:
