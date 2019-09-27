@@ -33,7 +33,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # frontend
-gem "bulma-rails"
 gem 'html2slim'
 gem 'slim-rails'
 
