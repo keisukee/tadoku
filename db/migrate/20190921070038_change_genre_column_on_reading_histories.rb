@@ -1,6 +1,6 @@
 class ChangeGenreColumnOnReadingHistories < ActiveRecord::Migration[5.2]
   def up
-    change_column :reading_histories, :genre, 'integer USING CAST(column_name AS integer)'
+    change_column :reading_histories, :genre, 'integer USING CAST(genre AS integer)'
   end
 
   def down
