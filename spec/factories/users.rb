@@ -29,10 +29,12 @@
 #  site_url               :string(255)
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
+FactoryBot.define do
+  factory :user do
+    sequence(:name) { |n| "test#{n}" }
+    sequence(:email) { |n| "test#{n}@example.com" }
+    password { "password" }
+    confirmed_at { DateTime.now }
+    start_at { DateTime.now }
+  end
+end

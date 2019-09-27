@@ -1,3 +1,34 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :bigint           not null, primary key
+#  email                  :string(255)      default(""), not null
+#  encrypted_password     :string(255)      default(""), not null
+#  reset_password_token   :string(255)
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :string(255)
+#  last_sign_in_ip        :string(255)
+#  confirmation_token     :string(255)
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  unconfirmed_email      :string(255)
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  words                  :string(255)
+#  title                  :string(255)
+#  name                   :string(255)
+#  image                  :string(255)
+#  start_at               :datetime
+#  introduction           :text(65535)
+#  site_name              :string(255)
+#  site_url               :string(255)
+#
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -12,13 +43,13 @@ class User < ApplicationRecord
 
   # TODO: seedでデータを作ろうとするとエラーが出るので、何かがおかしい
   before_save do
-    self.words = self.calc_words
+    self.words = calc_words.to_s
   end
 
   def calc_words
     count = 0
-    self.read_books.each do |book|
-      count += book.length
+    reading_histories_status_read.each do |reading_history|
+      count += reading_history.words unless reading_history.words.nil?
     end
     count
   end
@@ -43,28 +74,28 @@ class User < ApplicationRecord
   # 累計グラフの縦軸
   def calc_cumulative_words
     # グラフには20本のvarを出す
-    number_of_books = self.read_books.count
+    number_of_books = reading_histories_status_read.count
     count = 0
     words_cumulated = []
     book_count = 0
 
     if number_of_books >= 0 && number_of_books <= 20
-      self.read_books.each do |book|
-        count += book.length
+      reading_histories_status_read.each do |reading_history|
+        count += reading_history.words
         words_cumulated << count
       end
     elsif number_of_books >= 21 && number_of_books <= 40
-      self.read_books.each do |book|
+      reading_histories_status_read.each do |reading_history|
         book_count += 1
         start_book_count = number_of_books - 20 # 例えば30冊本を読んだとしたら,30 - 20 = 10で、10冊目から30冊目までの20本の縦棒にしたい
-        count += book.length
+        count += reading_history.words
         words_cumulated << count if book_count >= start_book_count
       end
     else
-      self.read_books.each do |book|
+      reading_histories_status_read.each do |reading_history|
         book_count += 1
         start_book_count = 20 # 例えば50冊本を読んだとしたら,50 - 20 = 30で、30冊目から50冊目までの20本の縦棒にしたい
-        count += book.length
+        count += reading_history.words
         words_cumulated << count if book_count >= start_book_count
       end
     end
@@ -73,9 +104,9 @@ class User < ApplicationRecord
 
   # 累計グラフの横軸の本の冊数を出す
   def cumulated_book_number
-    number_of_books = self.read_books.count
+    number_of_books = reading_histories_status_read.count
     book_number_cumulated = []
-    book_count = 0
+    # book_count = 0
 
     if number_of_books >= 0 && number_of_books <= 20
       (1..number_of_books).each do |i|

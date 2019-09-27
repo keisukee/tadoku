@@ -19,7 +19,18 @@
 #  price        :string(255)
 #
 
-require 'rails_helper'
-
-RSpec.describe Book, type: :model do
+FactoryBot.define do
+  factory :book do
+    sequence(:title) { |n| "title#{n}" }
+    sequence(:isbn) { |n| "abc#{n}" }
+    sequence(:asin) { |n| "abc#{n}" }
+    sequence(:url) { |n| "https://url/#{n}"}
+    sequence(:image_url) { |n| "https://image_url/#{n}"}
+    pages { 350 }
+    image_height { 300 }
+    image_width { 200 }
+    price { "1500" }
+    words { 50000 }
+    author
+  end
 end

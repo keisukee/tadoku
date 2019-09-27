@@ -65,6 +65,7 @@ module SearchAmazon
         books_info[:isbn] = doc.xpath("//ISBN").text
         books_info[:asin] = doc.xpath("//ASIN").text
         books_info[:pages] = doc.xpath("//NumberOfPages").text
+        books_info[:words] = books_info[:pages].to_i * Book::AVERAGE_WORDS_PER_PAGE
         books_info[:title] = doc.xpath("//Title").text
         books_info[:price] = doc.xpath("//ListPrice//FormattedPrice").text
 

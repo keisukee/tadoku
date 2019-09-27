@@ -8,8 +8,8 @@
 #  updated_at :datetime         not null
 #
 
-class Author < ApplicationRecord
-  has_many :books
-
-  validates :name, presence: true, uniqueness: true
+FactoryBot.define do
+  factory :author do
+    sequence(:name) { |n| "author#{n}" }
+  end
 end
