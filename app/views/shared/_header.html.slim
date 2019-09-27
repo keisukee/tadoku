@@ -2,13 +2,16 @@ header.columns.is-multiline
   .header_top
     .column.is-12
       h1.title
-        = link_to "多読マラソン", root_path, class: ""
+        = link_to root_path do
+          i.fas.fa-book-reader
+          | 多読マラソン
+
     .form.navbar-item.column.is-4
       .field
         = form_with url: search_books_path, method: :get, local: true do |form|
           .control
             = form.text_field :search, placeholder: '本を検索する', class: "input is-small"
-            = form.submit value: 'Submit', class: "button is-small"
+            = form.submit value: '検索', class: "button is-small"
   .tabs.is-centered.column.is-12
     ul
       li = link_to '本一覧', books_path, class: "navbar-item"
