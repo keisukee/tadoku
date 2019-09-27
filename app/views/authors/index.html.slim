@@ -1,11 +1,7 @@
-h1 Authors#index
-p Find me in app/views/authors/index.html.slim
-
-- @authors.each do |author|
-  h2
-    = link_to author.name, author_path(author)
-    span
-      = author.books.count
-      | 冊
-
-
+.column.is-4
+  = render "shared/side_bar"
+.authors-index.column.is-8
+  h2.title 著者一覧
+  - @authors.each do |author|
+    span.authorName
+      = link_to author.name, author_path(author)

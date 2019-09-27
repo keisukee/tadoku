@@ -1,7 +1,10 @@
 / TODO: リンクをちゃんとしたものに張り替える
 footer
-  ul
-    li = link_to '多読の達人について', root_path
+  aside.menu
+    p.menu-label
+      | 運営情報
+  ul.menu-list
+    li = link_to '多読マラソンについて', root_path
     li = link_to '運営者プロフィール', root_path
     li = link_to '利用規約', root_path
     li = link_to '個人情報保護方針', root_path

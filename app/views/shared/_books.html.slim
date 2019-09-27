@@ -1,18 +1,27 @@
-- books.each do |book|
-  ul
-    li
-      = link_to book_path(book) do
-        = image_tag book.image_url, width: book.image_width, height: book.image_height
-    li = link_to book.title, book_path(book)
-    li = book.isbn
-    li = book.asin
-    li
-      = book.pages
-      | pages
-    li
-      = book.length
-      | words
-    li = book.author.name
-    li
-      = book.price
-      | 円
+- if books.count > 0
+  .shared-books
+    ul
+      - books.each do |book|
+        li.list
+          .list-left
+            .list_image
+              = link_to book_path(book) do
+                = image_tag book.image_url, width: book.image_width, height: book.image_height
+          .list-right
+            .list_title
+              = link_to book.title, book_path(book)
+            .list_asin
+              | ASIN: 
+              = book.asin
+            .list_pages
+              = book.pages
+              | ページ
+            .list_words
+              = book.words
+              | 語
+            .list_author
+              | 作者 
+              = book.author.name
+            .list_price
+              = book.price
+              | 円

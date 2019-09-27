@@ -1,11 +1,26 @@
-h1 Users::Reviews#index
-p Find me in app/views/users/reviews/index.html.slim
-
-- @reviews.each do |review|
-  ul
-    li = review.book.title
-    li = review.book.pages
-    li = review.book.author
-    li = review.review
-    li = review.words
-    li = review.level
+.column.is-4
+  = render "shared/profile", user: @user, reviews: @user.reviews
+.users-reviews-index.column.is-8
+  .reviews
+    ul
+      - @reviews.each do |review|
+        li.list
+          .list-left
+            .list_image
+              = link_to book_path(review.book) do
+                = image_tag review.book.image_url, width: review.book.image_width, height: review.book.image_height
+          .list-right
+            .list_title
+              = link_to review.book.title, book_path(review.book)
+            .list_review
+              = review.review
+            .list-below
+              .list_pages
+                = review.book.pages
+                | ページ
+              .list_level
+                | レベル
+                = review.level
+              .list_words
+                = review.words
+                | 語

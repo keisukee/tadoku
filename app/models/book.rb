@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: books
+#
+#  id           :bigint           not null, primary key
+#  title        :string(255)
+#  words       :integer
+#  isbn         :string(255)
+#  level        :string(255)
+#  pages        :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  author_id    :bigint
+#  url          :text(65535)
+#  image_url    :text(65535)
+#  image_height :integer
+#  image_width  :integer
+#  asin         :string(255)
+#  price        :string(255)
+#
+
 class Book < ApplicationRecord
   include SearchAmazon
 
@@ -16,7 +37,7 @@ class Book < ApplicationRecord
   AVERAGE_WORDS_PER_PAGE = 250
 
   before_save do
-    self.length = estimate_book_length
+    self.words = estimate_book_words
   end
 
   def self.find_books(keyword)
@@ -31,7 +52,7 @@ class Book < ApplicationRecord
     SearchAmazon.collect_books(keyword)
   end
 
-  def estimate_book_length
+  def estimate_book_words
     pages * AVERAGE_WORDS_PER_PAGE
   end
 end

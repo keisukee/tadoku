@@ -1,18 +1,19 @@
 class Users::BooksController < ApplicationController
-  before_action :set_user, only: [:index, :show]
+  before_action :set_user, only: [:index, :show, :wish, :stacked, :reading, :read]
   before_action :book_params, only: [:create, :update]
   before_action :author_params, only: [:create, :update]
   before_action :reading_history_params, only: [:create, :update]
   before_action :authenticate_user!, only: [:new, :create, :edit]
 
   def index
-    @books = @user.books
-    @reading_histories = ReadingHistory.where(user_id: @user.id).where.not(review: nil)
+    @books = @user.read_books
+    @reading_histories = ReadingHistory.where(user_id: @user.id)
   end
 
   def new
     @book_data = book_params || ""
     @author_data = author_params || ""
+    @reading_history_data = reading_history_params || ""
     @book = Book.new
   end
 
@@ -27,20 +28,23 @@ class Users::BooksController < ApplicationController
     end
 
     @book = Book.find_by(asin: book_params[:asin])
-
-    year = reading_history_params["read_at(1i)"].to_i
-    month = reading_history_params["read_at(2i)"].to_i
-    day = reading_history_params["read_at(3i)"].to_i
-    hour = reading_history_params["read_at(4i)"].to_i
-    minute = reading_history_params["read_at(5i)"].to_i
-    @read_at = DateTime.new(year, month, day, hour, minute)
+    unless reading_history_params["read_at(1i)"].nil?
+      year = reading_history_params["read_at(1i)"].to_i
+      month = reading_history_params["read_at(2i)"].to_i
+      day = reading_history_params["read_at(3i)"].to_i
+      hour = reading_history_params["read_at(4i)"].to_i
+      minute = reading_history_params["read_at(5i)"].to_i
+      @read_at = DateTime.new(year, month, day, hour, minute)
+    end
 
     ReadingHistory.create(user_id: current_user.id,
                           book_id: @book.id,
                           read_at: @read_at,
                           review: reading_history_params[:review],
                           level: reading_history_params[:level],
-                          words: reading_history_params[:words])
+                          words: reading_history_params[:words],
+                          genre: reading_history_params[:genre],
+                          status: reading_history_params[:status])
 
     redirect_to user_books_path(current_user)
   end
@@ -54,6 +58,22 @@ class Users::BooksController < ApplicationController
   def destroy
   end
 
+  def wish
+    @reading_histories = ReadingHistory.where(user_id: @user.id, status: "wish")
+  end
+
+  def stacked
+    @reading_histories = ReadingHistory.where(user_id: @user.id, status: "stacked")
+  end
+
+  def reading
+    @reading_histories = ReadingHistory.where(user_id: @user.id, status: "reading")
+  end
+
+  def read
+    @reading_histories = ReadingHistory.where(user_id: @user.id, status: "read")
+  end
+
   private
 
   def set_user
@@ -61,7 +81,7 @@ class Users::BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :isbn, :asin, :url, :image_url, :image_height, :image_width, :pages, :price)
+    params.require(:book).permit(:title, :isbn, :asin, :url, :image_url, :image_height, :image_width, :pages, :price, :words)
   end
 
   def author_params
@@ -69,7 +89,7 @@ class Users::BooksController < ApplicationController
   end
 
   def reading_history_params
-    params.require(:book).permit("read_at(1i)", "read_at(2i)", "read_at(3i)", "read_at(4i)", "read_at(5i)", :review, :words, :level)
+    params.require(:book).permit("read_at(1i)", "read_at(2i)", "read_at(3i)", "read_at(4i)", "read_at(5i)", :review, :words, :level, :genre, :status)
   end
 
 end

@@ -1,0 +1,4 @@
+.column.is-4
+  = render "shared/profile", user: @user, reviews: @user.reviews
+.users-books-read.column.is-8
+  = render "shared/books", books: @user.read_books

@@ -1,0 +1,33 @@
+.column.is-4
+  = render "shared/profile", user: current_user, reviews: current_user.reviews
+.users-account.column.is-8
+  h1
+    = current_user.name
+    | のアカウント情報
+  section.accontInfo
+    = form_with model: @user, method: :put, url: user_path(current_user) do |form|
+      .field
+        = form.label :genre, "ニックネーム", class: "label"
+        = form.text_field :name, :value => current_user.name, class: "input"
+      .field
+        = form.label :start_at, "多読開始日", class: "label"
+        = form.datetime_select :start_at, :value => current_user.start_at, class: "select"
+      / .field
+        = form.label :image, "レビュー", class: "label"
+        = form.text_area :review, class: "textarea"
+      .field
+        = form.label :site_name, "サイト名", class: "label"
+        = form.text_field :site_name, :value => current_user.site_name
+      .field
+        = form.label :site_url, "サイトURL", class: "label"
+        = form.text_field :site_url, :value => current_user.site_url
+      .field
+        = form.label :introduction, "自己紹介（意気込みなど）", class: "label"
+        = form.text_field :introduction, class: "input"
+      .field
+        = form.submit value: "変更", class: "button is-success is-outlined"
+
+  ul
+    li = link_to "パスワード変更・退会はこちら", edit_user_registration_path
+
+

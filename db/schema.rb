@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_20_075945) do
+ActiveRecord::Schema.define(version: 2019_09_26_022950) do
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,8 +32,7 @@ ActiveRecord::Schema.define(version: 2019_09_20_075945) do
 
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
-    t.integer "length"
-    t.string "genre"
+    t.integer "words"
     t.string "isbn"
     t.string "level"
     t.integer "pages"
@@ -57,8 +56,9 @@ ActiveRecord::Schema.define(version: 2019_09_20_075945) do
     t.datetime "updated_at", null: false
     t.text "review"
     t.decimal "level", precision: 2, scale: 1
-    t.string "genre"
+    t.integer "genre"
     t.integer "words"
+    t.integer "status"
     t.index ["book_id"], name: "index_reading_histories_on_book_id"
     t.index ["user_id"], name: "index_reading_histories_on_user_id"
   end
@@ -84,6 +84,10 @@ ActiveRecord::Schema.define(version: 2019_09_20_075945) do
     t.string "title"
     t.string "name"
     t.string "image"
+    t.datetime "start_at"
+    t.text "introduction"
+    t.string "site_name"
+    t.string "site_url"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

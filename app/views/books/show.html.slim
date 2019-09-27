@@ -1,26 +1,64 @@
-h1 Books#show
-p Find me in app/views/books/show.html.slim
-
-
-ul
-  li
-    = link_to @book.url, target: "_blank" do
-      = image_tag @book.image_url, width: @book.image_width, height: @book.image_height
-  li = link_to @book.title, @book.url, target: "_blank"
-  li = @book.isbn
-  li = @book.asin
-  li
-    = @book.pages
-    | pages
-  li
-    = @book.length
-    | words
-  li = @book.author.name
-  li
-    = @book.price
-    | 円
-
-- if current_user
-  ul
-    / li = link_to "読んだ本に登録", register_book_path
-    li = link_to "読みたい本に登録", root_path
+.column.is-4
+  = render "shared/side_bar"
+.books-index.column.is-8
+  h2.title = @book.title
+  / booksには配列が入るが@bookは単数なので、わざわざ配列に入れている
+  = render '/shared/books', books: [@book]
+  .registrationButtons
+    ul
+      li
+        = form_with model: @book, method: :get, local: true, url: new_users_book_path do |form|
+          = form.hidden_field :author_name, :value => @book.author.name
+          = form.hidden_field :title, :value => @book.title
+          = form.hidden_field :url, :value => @book.url
+          = form.hidden_field :isbn, :value => @book.isbn
+          = form.hidden_field :asin, :value => @book.asin
+          = form.hidden_field :image_url, :value => @book.image_url
+          = form.hidden_field :image_height, :value => @book.image_height
+          = form.hidden_field :image_width, :value => @book.image_width
+          = form.hidden_field :pages, :value => @book.pages
+          = form.hidden_field :price, :value => @book.price
+          = form.hidden_field :status, :value => "read"
+          = form.submit value: "読んだ本に登録", class: "button"
+      li
+        = form_with model: @book, method: :get, local: true, url: new_users_book_path do |form|
+          = form.hidden_field :author_name, :value => @book.author.name
+          = form.hidden_field :title, :value => @book.title
+          = form.hidden_field :url, :value => @book.url
+          = form.hidden_field :isbn, :value => @book.isbn
+          = form.hidden_field :asin, :value => @book.asin
+          = form.hidden_field :image_url, :value => @book.image_url
+          = form.hidden_field :image_height, :value => @book.image_height
+          = form.hidden_field :image_width, :value => @book.image_width
+          = form.hidden_field :pages, :value => @book.pages
+          = form.hidden_field :price, :value => @book.price
+          = form.hidden_field :status, :value => "reading"
+          = form.submit value: "読書中に登録", class: "button"
+      li
+        = form_with model: @book, method: :get, local: true, url: new_users_book_path do |form|
+          = form.hidden_field :author_name, :value => @book.author.name
+          = form.hidden_field :title, :value => @book.title
+          = form.hidden_field :url, :value => @book.url
+          = form.hidden_field :isbn, :value => @book.isbn
+          = form.hidden_field :asin, :value => @book.asin
+          = form.hidden_field :image_url, :value => @book.image_url
+          = form.hidden_field :image_height, :value => @book.image_height
+          = form.hidden_field :image_width, :value => @book.image_width
+          = form.hidden_field :pages, :value => @book.pages
+          = form.hidden_field :price, :value => @book.price
+          = form.hidden_field :status, :value => "wish"
+          = form.submit value: "読みたい本に登録", class: "button"
+      li
+        = form_with model: @book, method: :get, local: true, url: new_users_book_path do |form|
+          = form.hidden_field :author_name, :value => @book.author.name
+          = form.hidden_field :title, :value => @book.title
+          = form.hidden_field :url, :value => @book.url
+          = form.hidden_field :isbn, :value => @book.isbn
+          = form.hidden_field :asin, :value => @book.asin
+          = form.hidden_field :image_url, :value => @book.image_url
+          = form.hidden_field :image_height, :value => @book.image_height
+          = form.hidden_field :image_width, :value => @book.image_width
+          = form.hidden_field :pages, :value => @book.pages
+          = form.hidden_field :price, :value => @book.price
+          = form.hidden_field :status, :value => "stacked"
+          = form.submit value: "積読本に登録", class: "button"
