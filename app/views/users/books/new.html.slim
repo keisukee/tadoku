@@ -48,7 +48,9 @@
             = form.label :words, "語数", class: "label"
             = form.number_field :words, :value => @book_data[:pages].to_i * Book::AVERAGE_WORDS_PER_PAGE, class: "input"
           .field
-            = form.label :level, "レベル", class: "label"
+            span.label
+              | YL（読みやすさレベル）
+              small = link_to "読みやすさレベルとは", about_path(anchor: :yl), target: "_blank"
             = form.number_field :level, step: 0.5, min: 0, max: 10, class: "select"
           .field
             = form.label :read_at, "読んだ時刻", class: "label"

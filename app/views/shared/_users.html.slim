@@ -1,4 +1,4 @@
-- if users.count > 0
+- if users.length > 0
   .shared-users
     ul
       - users.each do |user|
@@ -11,5 +11,20 @@
             .list_name
               = link_to user.name, user_path(user)
             .list_words
+              | 累計語数 
               = user.words
               | 語
+            .list_books
+              span 読んだ本 
+              = link_to user_books_path(user_id: user.id)
+                = user.read_books.count
+                | 冊
+            .list_reviews
+              span レビュー 
+              = link_to user_reviews_path(user_id: user.id)
+                = user.reviews.count
+                | 件
+            - unless user.start_at.nil?
+              .list_startAt
+                | 多読開始日
+                = user.start_at.strftime('%Y/%m/%d')

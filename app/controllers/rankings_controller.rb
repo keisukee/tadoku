@@ -10,6 +10,7 @@ class RankingsController < ApplicationController
   end
 
   def users
+    @users_order_by_words = User.order("words desc").limit(10)
   end
 
   def authors
