@@ -135,7 +135,7 @@ class User < ApplicationRecord
   end
 
   def wish_books
-    books.joins(:reading_histories).preload(:reading_histories).where(reading_histories: { status: "wish"})
+    books.joins(:reading_histories).preload(:reading_histories).where(reading_histories: { status: "wish" })
   end
 
   def reading_histories_status_stacked
@@ -143,7 +143,7 @@ class User < ApplicationRecord
   end
 
   def stacked_books
-    books.joins(:reading_histories).preload(:reading_histories).where(reading_histories: { status: "stacked"})
+    books.joins(:reading_histories).preload(:reading_histories).where(reading_histories: { status: "stacked" })
   end
 
   def reading_histories_status_reading
@@ -151,7 +151,7 @@ class User < ApplicationRecord
   end
 
   def reading_books
-    books.joins(:reading_histories).preload(:reading_histories).where(reading_histories: { status: "reading"})
+    books.joins(:reading_histories).preload(:reading_histories).where(reading_histories: { status: "reading" })
   end
 
   def reading_histories_status_read
@@ -159,7 +159,7 @@ class User < ApplicationRecord
   end
 
   def read_books
-    books.joins(:reading_histories).preload(:reading_histories).where(reading_histories: { status: "read"})
+    books.joins(:reading_histories).preload(:reading_histories).where(reading_histories: { status: "read" })
   end
 
   # TODO: ランキング系はリリース後に実装
