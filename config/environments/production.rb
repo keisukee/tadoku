@@ -89,6 +89,13 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  slack: {
+    webhook_url: "https://hooks.slack.com/services/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",
+    channel: "#100_tadoku_error_notification",
+    additional_parameters: { mrkdwn: true }
+  }
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
