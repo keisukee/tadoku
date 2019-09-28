@@ -110,8 +110,6 @@ Rails.application.configure do
       domain:               'heroku.com',
       enable_starttls_auto: true
   }
-# 省略
-end
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
