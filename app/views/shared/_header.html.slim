@@ -16,6 +16,7 @@ header.columns.is-multiline
     ul
       li = link_to '本一覧', books_path, class: "navbar-item"
       li = link_to '著者一覧', authors_path, class: "navbar-item"
+      li = link_to 'ユーザー一覧', users_path, class: "navbar-item"
       li = link_to 'ランキング', rankings_path, class: "navbar-item"
       - if current_user
         li = link_to 'プロフィール', user_path(current_user), class: "navbar-item"
