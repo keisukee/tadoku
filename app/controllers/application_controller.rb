@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :set_notification
-  before_filter :ensure_domain
+  before_action :ensure_domain
 
   FQDN = "https://www.tadoku.site"
 
