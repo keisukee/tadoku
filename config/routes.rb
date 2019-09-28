@@ -1,7 +1,17 @@
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
-  root to: "home#index"
+  root to: "home#top"
+
+  scope module: :home do
+    get :top
+    get :about
+    get :profile
+    get :terms_of_service
+    get :help
+    get :forum
+  end
+
   devise_for :users, controllers: {
      sessions: 'users/sessions',
      registrations: 'users/registrations',
