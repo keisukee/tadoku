@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get :about
     get :profile
     get :terms_of_service
+    get :privacy_policy
     get :help
     get :forum
   end
