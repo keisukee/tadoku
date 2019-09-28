@@ -51,7 +51,8 @@ gem 'activeadmin'
 gem 'carrierwave'
 gem 'fog'
 
-# Slack notification
+# Notification
+gem 'exception_notification'
 gem 'slack-notifier'
 
 # scraping
