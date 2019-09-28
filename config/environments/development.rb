@@ -31,7 +31,14 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  slack: {
+    :webhook_url => "https://hooks.slack.com/services/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",
+    :channel => "#100_tadoku_error_notification"
+  }
+
 
   config.action_mailer.perform_caching = false
 
