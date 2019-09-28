@@ -1,4 +1,7 @@
-h1 Authors#show
-p Find me in app/views/authors/show.html.slim
-
-= render '/shared/books', books: @author.books
+.column.is-4
+  = render "shared/side_bar"
+.authors-index.column.is-8
+  h2.title
+    = @author.name
+    | の本一覧
+  = render '/shared/books', books: @author.books
