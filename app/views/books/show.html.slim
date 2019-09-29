@@ -3,7 +3,7 @@
 .books-index.column.is-8
   h2.title = @book.title
   / booksには配列が入るが@bookは単数なので、わざわざ配列に入れている
-  = render '/shared/books', books: [@book]
+  = render '/shared/book', book: @book
   .registrationButtons
     ul
       li

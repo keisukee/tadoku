@@ -1,0 +1,25 @@
+.shared-books
+  ul
+    li.list
+      .list-left
+        .list_image
+          = link_to book.url, target: "_blank" do
+            = image_tag book.image_url, width: book.image_width, height: book.image_height
+      .list-right
+        .list_title
+          = link_to book.title, book.url, target: "_blank"
+        .list_asin
+          | ASIN: 
+          = book.asin
+        .list_pages
+          = book.pages
+          | ページ
+        .list_words
+          = book.words
+          | 語
+        .list_author
+          | 作者 
+          = book.author.name
+        .list_price
+          = book.price
+          | 円
