@@ -21,9 +21,7 @@ html
   body
     .wrapper
       = render 'shared/header'
-      - if flash
-        - flash.each do |type, message|
-          = message
+      = render 'layouts/flash_messages'
       .container.columns.is-multiline
         = yield
       = render 'shared/footer'

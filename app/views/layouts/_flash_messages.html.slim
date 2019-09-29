@@ -1,0 +1,4 @@
+- flash.each do |message_type, message|
+  div class=("notification is-#{flash_class(message_type)}")
+    = message
+    // Bulmaの場合:  is-primary, is-link, is-info, is-success, is-warning, is-dangerがある
