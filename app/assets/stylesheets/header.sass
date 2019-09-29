@@ -4,13 +4,21 @@ header
     width: 100%
     background-color: #07D0B2
     padding: 10px
-    .title
+    h1
       a
         color: #FFF
         font-size: 36px
+        font-weight: bold
         &:hover
           text-decoration: none
+    .form
+      .control
+        display: flex
   .tabs
     ul
       display: flex
       flex-wrap: wrap
+@media (min-width: 769px)
+  header
+    .header_top
+      display: flex
