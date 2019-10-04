@@ -40,6 +40,10 @@ class Book < ApplicationRecord
     self.words = estimate_book_words
   end
 
+  before_validation do
+    set_default_pages
+  end
+
   def self.find_books(keyword)
     SearchAmazon.search_books(keyword)
   end
@@ -54,5 +58,9 @@ class Book < ApplicationRecord
 
   def estimate_book_words
     pages * AVERAGE_WORDS_PER_PAGE
+  end
+
+  def set_default_pages
+    self.pages = 0 if pages.nil? # ページが取得できなかったら0を返す
   end
 end
